@@ -2,16 +2,16 @@ package com.iu.start.bankbook;
 
 public class BankBookDTO {
 
-	private int booknum;
+	private Long booknum;
 	private String bookname;
-	private double bookrate;
-	private boolean booksale;
+	private Double bookrate;
+	private Integer booksale;
 	
 	
-	public int getBooknum() {
+	public Long getBooknum() {
 		return booknum;
 	}
-	public void setBooknum(int booknum) {
+	public void setBooknum(Long booknum) {
 		this.booknum = booknum;
 	}
 	public String getBookname() {
@@ -20,16 +20,17 @@ public class BankBookDTO {
 	public void setBookname(String bookname) {
 		this.bookname = bookname;
 	}
-	public double getBookrate() {
+	public Double getBookrate() {
 		return bookrate;
 	}
-	public void setBookrate(double bookrate) {
+	public void setBookrate(Double bookrate) {
 		this.bookrate = bookrate;
 	}
-	public boolean isBooksale() {
+	public Integer getBooksale() {
 		return booksale;
 	}
-	public void setBooksale(boolean booksale) {
+	public void setBooksale(Integer booksale) {
 		this.booksale = booksale;
 	}
+
 }

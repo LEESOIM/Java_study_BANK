@@ -11,11 +11,11 @@ public class BankMembersTest {
 
 		BankMembersDAO bankMembersDAO = new BankMembersDAO();
 		BankMembersDTO bankMembersDTO = new BankMembersDTO();
-		bankMembersDTO.setUsername("ㅇㅅㅇ5");
+		bankMembersDTO.setUsername("ㅇㅅㅇ3");
 		bankMembersDTO.setPassword("1234");
 		bankMembersDTO.setName("임이");
-		bankMembersDTO.setEmail("@naver.com5");
-		bankMembersDTO.setPhone("010123456785");
+		bankMembersDTO.setEmail("@naver.com3");
+		bankMembersDTO.setPhone("010123456783");
 		
 		
 		try {

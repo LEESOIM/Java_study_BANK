@@ -41,14 +41,17 @@ public class BankMembersDAO implements MembersDAO {
 		ArrayList<BankMembersDTO> ar = new ArrayList<BankMembersDTO>();
 		
 		Connection con = DBConnector.getConnection();
-		String sql = "SELECT * FROM BANKMEMBERS WHERE USERNAME LIKE '%'||?||'%' ORDER BY USERNAME ASC" ;
-		PreparedStatement st = con.prepareStatement(sql);
-		st.setString(1, search);
-		ResultSet rs = st.executeQuery();
 		
+		String sql = "SELECT * FROM BANKMEMBERS WHERE USERNAME LIKE '%'||?||'%' ORDER BY USERNAME ASC" ;
+		
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		st.setString(1, search); // "%"+search+"%"
+		
+		ResultSet rs = st.executeQuery();
 		while(rs.next()) {
 			BankMembersDTO bankMembersDTO = new BankMembersDTO();
-			bankMembersDTO.setUsername(rs.getString("USERNAME"));
+			bankMembersDTO.setUsername(rs.getString("USERNAME")); //USERNAME 컬럼에 있는 데이터를 꺼내서 DTO에 세팅해
 			bankMembersDTO.setPassword(rs.getString("PASSWORD"));
 			bankMembersDTO.setName(rs.getString("NAME"));
 			bankMembersDTO.setEmail(rs.getString("EMAIL"));
