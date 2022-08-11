@@ -11,11 +11,11 @@
 	
 	<form action="./add" method="post">
 		<div>
-			<h3>통장이름</h3>
-			<input type="text" name="bookname">
+			Name : <input type="text" name="bookname">
+		</div>
 			
-			<h3>이자율</h3>
-			<input type="text" name="bookrate">
+		<div>	
+			Rate : <input type="text" name="bookrate">
 		</div>
 		
 		<div>

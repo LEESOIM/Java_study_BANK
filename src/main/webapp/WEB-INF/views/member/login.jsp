@@ -19,16 +19,16 @@
 		<h1>로그인</h1>
 			    
 		<div>
-			ID <input type="text" name="id" placeholder="아이디"> 
+			ID <input type="text" name="username" placeholder="아이디"> 
 		</div>
 			
 		<div>
-			PW <input type="password" name="pw" placeholder="비밀번호">
+			PW <input type="password" name="password" placeholder="비밀번호">
 		</div>
 			        
 		<input type="submit" value="로그인">
 			
-		<a href="/">Index</a>
+		<a href="../">Index</a>
 
 	</form>
 </body>

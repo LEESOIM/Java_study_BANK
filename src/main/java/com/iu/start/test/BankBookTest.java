@@ -41,17 +41,29 @@ public class BankBookTest {
 //			System.out.println(result==1);
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
-			bankBookDTO.setBooknum(16595110L);
-			bankBookDTO = bankBookDAO.getDetail(bankBookDTO);
+//			bankBookDTO.setBooknum(16595110L);
+//			bankBookDTO = bankBookDAO.getDetail(bankBookDTO);
+//			
+//			if(bankBookDTO != null) {
+//			System.out.println(bankBookDTO.getBooknum());
+//			System.out.println(bankBookDTO.getBookname());
+//			System.out.println(bankBookDTO.getBookrate());
+//			System.out.println(bankBookDTO.getBooksale());
+//			} else {
+//				System.out.println("정보없음");
+//			}
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
 			
-			if(bankBookDTO != null) {
-			System.out.println(bankBookDTO.getBooknum());
-			System.out.println(bankBookDTO.getBookname());
-			System.out.println(bankBookDTO.getBookrate());
-			System.out.println(bankBookDTO.getBooksale());
-			} else {
-				System.out.println("정보없음");
-			}
+//			bankBookDTO.setBookname("해삐해삐");
+//			bankBookDTO.setBookrate(11.1);
+//			bankBookDTO.setBooknum(1660122561410L);
+//			int result = bankBookDAO.setUpdate(bankBookDTO);
+//			System.out.println(result==1);
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
+			bankBookDTO.setBooknum(1660122561410L);
+			int result = bankBookDAO.setDelete(bankBookDTO);
+			System.out.println(result==1);
+			
 			
 			
 		} catch (Exception e) {
