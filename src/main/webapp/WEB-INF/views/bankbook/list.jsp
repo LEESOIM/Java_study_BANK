@@ -39,14 +39,13 @@
 -->			
 			
 			<% for(BankBookDTO bankBookDTO:ar){ %>
-			<tr>
-				<td><a href="detail?bookNum=<%= bankBookDTO.getBooknum()%>"> <%= bankBookDTO.getBookname() %></a></td>
-				<td><%= bankBookDTO.getBookrate() %></td>
-			</tr>
+				<tr>
+					<td><a href="detail?booknum=<%= bankBookDTO.getBooknum()%>"> <%= bankBookDTO.getBookname() %></a></td>
+					<td><%= bankBookDTO.getBookrate() %></td>
+				</tr>
 			<%} %>
 		</tbody>
 	</table>
-	
-	<a href="./detail">상세보기</a>
+	<a href="./add">상품등록</a>
 </body>
 </html>

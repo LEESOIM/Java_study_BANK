@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import com.iu.start.util.DBConnector;
 
@@ -18,7 +19,8 @@ public class BankBookDAO implements BookDAO{
 		
 		PreparedStatement st = con.prepareStatement(sql);
 
-		st.setLong(1, bankBookDTO.getBooknum());
+		Long now = System.currentTimeMillis();
+		st.setLong(1, now);
 		st.setString(2, bankBookDTO.getBookname());
 		st.setDouble(3, bankBookDTO.getBookrate());
 		

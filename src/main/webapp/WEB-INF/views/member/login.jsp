@@ -28,7 +28,7 @@
 			        
 		<input type="submit" value="로그인">
 			
-		<a href="../study_index.html">Index</a>
+		<a href="/">Index</a>
 
 	</form>
 </body>

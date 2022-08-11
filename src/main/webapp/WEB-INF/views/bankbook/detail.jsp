@@ -16,12 +16,12 @@
 	
 	<%if(bankBookDTO != null) { %>
 	<table border="1">
-			<tr>
-				<th>Num</th>
-				<th>Name</th>
-				<th>Rate</th>
-				<th>Sale</th>
-			</tr>
+		<tr>
+			<th>Num</th>
+			<th>Name</th>
+			<th>Rate</th>
+			<th>Sale</th>
+		</tr>
 		<tr>
 			<td><%=bankBookDTO.getBooknum() %></td>
 			<td><%=bankBookDTO.getBookname() %></td>
@@ -43,5 +43,7 @@
 	<a href="../member/login">Login</a>
 	<!-- 절대경로 -->
 	<a href="/member/join">Join</a>
+	
+	<a href="./list">리스트보기</a>
 </body>
 </html>

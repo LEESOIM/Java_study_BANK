@@ -1,8 +1,11 @@
 package com.iu.start.bankmembers;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -16,21 +19,26 @@ public class MemberController {
 	//	@ : 설명+실행
 	
 	
-	
 	//	/member/login
-	@RequestMapping(value = "login") //절대경로로!
+	@RequestMapping(value = "login", method = RequestMethod.GET) //절대경로로!
 	public String login() {
 		System.out.println("로그인 실행");
+		return "member/login"; //servlet-context.xml에 앞뒤 url포함
+	}
+	
+	@RequestMapping(value = "login", method = RequestMethod.POST) 
+	public String login(BankMembersDTO bankMembersDTO) {
+		System.out.println("DB에 로그인 실행");
 		
-		return "member/login";
+		//	"redirect:다시접속할 URL주소(절대경로,상대경로)"
+		return "redirect:../"; //상대경로 
 	}
 	
 	
 	//	/member/join GET
 	@RequestMapping(value = "join", method = RequestMethod.GET)
 	public String join() {
-		System.out.println("Join GET");
-		
+		System.out.println("Join GET 실행");
 		return "member/join";
 	}
 	
@@ -38,18 +46,30 @@ public class MemberController {
 	//	/member/join POST
 	@RequestMapping(value = "join", method = RequestMethod.POST)
 	public String join(BankMembersDTO bankMembersDTO) throws Exception {
-		System.out.println("Join POST");
+		System.out.println("Join POST 실행");
 		BankMembersDAO bankMembersDAO = new BankMembersDAO();
-//		BankMembersDTO bankMembersDTO = new BankMembersDTO();
-//		
-//		bankMembersDTO.setUsername(username);
-//		bankMembersDTO.setPassword(password);
-//		bankMembersDTO.setName(name);
-//		bankMembersDTO.setEmail(email);
-//		bankMembersDTO.setPhone(phone);
-		
 		int result = bankMembersDAO.setJoin(bankMembersDTO);
 		System.out.println(result==1);
-		return "member/join";
+		return "redirect:./login";
 	}
+	
+	
+	
+	@RequestMapping(value="search", method=RequestMethod.GET)
+	public void getSearchByID() throws Exception {
+		System.out.println("Search GET 실행");
+	}
+	
+	
+	@RequestMapping(value="search", method=RequestMethod.POST)
+	public String getSearchByID(String search, Model model) throws Exception {
+		System.out.println("Search POST 실행");
+		
+		BankMembersDAO bankMembersDAO = new BankMembersDAO();
+		ArrayList<BankMembersDTO> ar = bankMembersDAO.getSearchByID(search);
+		model.addAttribute("list", ar);
+		return "member/list";
+	}
+	
+
 }
