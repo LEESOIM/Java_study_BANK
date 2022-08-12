@@ -9,13 +9,13 @@
 <body>
 	<h1>상품등록</h1>
 	
-	<form action="./add" method="post">
+	<form action="./add.iu" method="post">
 		<div>
-			Name : <input type="text" name="bookname">
+			Name : <input type="text" name="bookName">
 		</div>
 			
 		<div>	
-			Rate : <input type="text" name="bookrate">
+			Rate : <input type="text" name="bookRate">
 		</div>
 		
 		<div>

@@ -14,16 +14,16 @@
 	/member/login : POST -> 입력한 ID PW로 로그인 판단
 	 -->
 	
-	<form action="./login" method="post">
+	<form action="./login.iu" method="post">
         
 		<h1>로그인</h1>
 			    
 		<div>
-			ID <input type="text" name="username" placeholder="아이디"> 
+			ID <input type="text" value="ㅇㅅㅇ" name="userName" placeholder="아이디"> 
 		</div>
 			
 		<div>
-			PW <input type="password" name="password" placeholder="비밀번호">
+			PW <input type="password" value="1234" name="password" placeholder="비밀번호">
 		</div>
 			        
 		<input type="submit" value="로그인">

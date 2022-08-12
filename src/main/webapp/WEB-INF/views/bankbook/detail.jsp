@@ -1,6 +1,7 @@
 <%@page import="com.iu.start.bankbook.BankBookDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!-- 
 //요청이 발생하면 생성, 응답이 나가면 소멸 : RequestScope
     <%
@@ -24,9 +25,9 @@
 			<th>Sale</th>
 		</tr>
 		<tr>
-			<td>${requestScope.dto.getBooknum()}</td>
-			<td>${requestScope.dto.bookname}</td>
-			<td>${dto.bookrate}</td>
+			<td>${requestScope.dto.getBookNum()}</td>
+			<td>${requestScope.dto.bookName}</td>
+			<td>${dto.bookRate}</td>
 			<td>
 				
 			</td>
@@ -34,13 +35,17 @@
 	</table>
 	
 	<!-- 상대경로 -->
-	<a href="../member/login">Login</a>
+	<a href="../member/login.iu">Login</a>
 	<!-- 절대경로 -->
-	<a href="/member/join">Join</a>
+	<a href="/member/join.iu">Join</a>
 
-	<a href="./list">리스트</a>
-	<a href="update?booknum=${dto.booknum}">수정</a>
-	<a href="delete?booknum=${dto.booknum}">삭제</a>
+	<a href="./list.iu">리스트</a>
+	<a href="update.iu?bookNum=${dto.bookNum}">수정</a>
+	<a href="delete.iu?bookNum=${dto.bookNum}">삭제</a>
+	
+	<c:if test="${not empty sessionScope.member }">
+		<a href="../bankaccount/add.iu?bookNum=${dto.bookNum}">가입하기</a>
+	</c:if>
 	
 </body>
 </html>

@@ -40,20 +40,20 @@
 			
 <%-- 		<% for(BankBookDTO bankBookDTO:ar){ %>
 			<tr>
-				<td><a href="detail?booknum=<%= bankBookDTO.getBooknum()%>"> <%= bankBookDTO.getBookname() %></a></td>
-				<td><%= bankBookDTO.getBookrate() %></td>
+				<td><a href="detail?bookNum=<%= bankBookDTO.getBookNum()%>"> <%= bankBookDTO.getBookName() %></a></td>
+				<td><%= bankBookDTO.getBookRate() %></td>
 			</tr>
 			<%} %> 
 --%>
 
 			<c:forEach items="${requestScope.list }" var="dto">
 				<tr>
-					<td><a href="./detail?booknum=${pageScope.dto.booknum }">${pageScope.dto.bookname }</a></td>
-					<td>${pageScope.dto.bookrate }</td>
+					<td><a href="./detail.iu?bookNum=${pageScope.dto.bookNum }">${pageScope.dto.bookName }</a></td>
+					<td>${pageScope.dto.bookRate }</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-	<a href="./add">상품등록</a>
+	<a href="./add.iu">상품등록</a>
 </body>
 </html>

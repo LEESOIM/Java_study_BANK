@@ -21,7 +21,7 @@ public class BankMembersDAO implements MembersDAO {
 		PreparedStatement st = con.prepareStatement(sql);
 		
 		// 4. ? 세팅
-		st.setString(1, bankMembersDTO.getUsername());
+		st.setString(1, bankMembersDTO.getUserName());
 		st.setString(2, bankMembersDTO.getPassword());
 		st.setString(3, bankMembersDTO.getName());
 		st.setString(4, bankMembersDTO.getEmail());
@@ -51,7 +51,7 @@ public class BankMembersDAO implements MembersDAO {
 		ResultSet rs = st.executeQuery();
 		while(rs.next()) {
 			BankMembersDTO bankMembersDTO = new BankMembersDTO();
-			bankMembersDTO.setUsername(rs.getString("USERNAME")); //USERNAME 컬럼에 있는 데이터를 꺼내서 DTO에 세팅해
+			bankMembersDTO.setUserName(rs.getString("USERNAME")); //USERNAME 컬럼에 있는 데이터를 꺼내서 DTO에 세팅해
 			bankMembersDTO.setPassword(rs.getString("PASSWORD"));
 			bankMembersDTO.setName(rs.getString("NAME"));
 			bankMembersDTO.setEmail(rs.getString("EMAIL"));
@@ -71,18 +71,19 @@ public class BankMembersDAO implements MembersDAO {
 		String sql ="SELECT USERNAME, NAME FROM BANKMEMBERS WHERE USERNAME=? AND PASSWORD=?";
 		PreparedStatement st = con.prepareStatement(sql);
 
-		st.setString(1, bankMembersDTO.getUsername());
+		st.setString(1, bankMembersDTO.getUserName());
 		st.setString(2, bankMembersDTO.getPassword());
 		ResultSet rs = st.executeQuery();
 		if(rs.next()) {
 			bankMembersDTO = new BankMembersDTO();
-			bankMembersDTO.setUsername(rs.getString("USERNAME"));
+			bankMembersDTO.setUserName(rs.getString("USERNAME"));
 			bankMembersDTO.setName(rs.getString("NAME"));
 		}else {
 			bankMembersDTO=null;
 			//return null;
 		}
 		
+		DBConnector.disConnect(rs, st, con);
 		return bankMembersDTO;
 	}
 

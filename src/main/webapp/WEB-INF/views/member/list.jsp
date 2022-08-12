@@ -31,7 +31,7 @@
 
 			<c:forEach items="${requestScope.list}" var="dto">
 				<tr>
-					<td>${pageScope.dto.username }</td>
+					<td>${pageScope.dto.userName }</td>
 					<td>${pageScope.dto.name }</td>
 					<td>${pageScope.dto.email }</td>
 					<td>${pageScope.dto.phone }</td>
@@ -41,7 +41,7 @@
 		
 <%-- 		<%for(BankMembersDTO dto:ar) {%>
 			<tr>
-				<td><%=dto.getUsername() %></td>
+				<td><%=dto.getUserName() %></td>
 				<td><%=dto.getName() %></td>
 				<td><%=dto.getEmail() %></td>
 				<td><%=dto.getPhone() %></td>

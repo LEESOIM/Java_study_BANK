@@ -8,15 +8,15 @@
 </head>
 <body>
 <h1>UPDATE PAGE</h1>
-	<form action="update" method="post" >
+	<form action="update.iu" method="post" >
 	
-		<input type="hidden" name="booknum" value="${dto.booknum }" >
+		<input type="hidden" name="bookNum" value="${dto.bookNum }" >
 		
 		<div>
-			Name : <input type="text" name="bookname" value="${dto.bookname }">
+			Name : <input type="text" name="bookName" value="${dto.bookName }">
 		</div>
 		<div>
-			Rate : <input type="text" name="bookrate" value="${dto.bookrate }">
+			Rate : <input type="text" name="bookRate" value="${dto.bookRate }">
 		</div>
 		
 		<input type="submit" value="수정">

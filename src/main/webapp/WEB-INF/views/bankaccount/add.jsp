@@ -7,12 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>ID Search</h1>
-	<form action="search.iu" method="post">
-		<input type="text" name="search">
-	
-		<input type="submit" value="search">
-		<button>search</button>
-	</form>
+<h1>Account ADD</h1>
+
 </body>
 </html>

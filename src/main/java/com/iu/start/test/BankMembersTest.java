@@ -11,7 +11,7 @@ public class BankMembersTest {
 
 		BankMembersDAO bankMembersDAO = new BankMembersDAO();
 		BankMembersDTO bankMembersDTO = new BankMembersDTO();
-		bankMembersDTO.setUsername("ㅇㅅㅇ3");
+		bankMembersDTO.setUserName("ㅇㅅㅇ3");
 		bankMembersDTO.setPassword("1234");
 		bankMembersDTO.setName("임이");
 		bankMembersDTO.setEmail("@naver.com3");
@@ -24,7 +24,7 @@ public class BankMembersTest {
 			
 			ArrayList<BankMembersDTO> ar = bankMembersDAO.getSearchByID("ㅅ");
 			for(int i=0; i<ar.size(); i++) {
-				System.out.println(ar.get(i).getUsername());
+				System.out.println(ar.get(i).getUserName());
 			}
 			
 		} catch (Exception e) {

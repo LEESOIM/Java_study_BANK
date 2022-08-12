@@ -9,12 +9,12 @@
 <body>
 	<h1>Join Page</h1>
 	
-	    <form action="./join" method="post">
+	    <form action="./join.iu" method="post">
         
         <h1>회원가입</h1>
         <div>
         <h3>아이디</h3>
-        <input type="text" name="username"> 
+        <input type="text" name="userName"> 
         
         <h3>비밀번호</h3>
         <input type="password" name="password">
