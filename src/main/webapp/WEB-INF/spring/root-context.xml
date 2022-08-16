@@ -4,5 +4,28 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!-- 객체 생성, 객체 주입 -->
+	<!-- 객체 생성 -->
+	<!-- Engine engine = new Engine() -->
+	<!-- bean == new Default생성자() -->
+	<bean class="com.iu.start.di.Engine" id="engine"></bean>
+	<bean class="com.iu.start.di.LeftWheel" id="leftWheel"></bean>
+	<bean class="com.iu.start.di.RightWheel" id="rightWheel"></bean>
+	<bean class="com.iu.start.di.Car" id="car"> <!-- 매개변수가 있는 생성자 호출 -->
+	
+	  	<constructor-arg index="0" ref="leftWheel"></constructor-arg>
+		<constructor-arg index="1" ref="rightWheel"></constructor-arg> 
+
+<!-- 	<constructor-arg name="leftWheel" ref="leftWheel"></constructor-arg>
+		<constructor-arg name="rightWheel" ref="rightWheel"></constructor-arg>
+-->
+<!-- 	<constructor-arg type="com.iu.start.di.Wheel" ref="leftWheel"></constructor-arg>  //몇번째 휠인지 모르기 때문에 지금은 쓸수없다
+		<constructor-arg type="com.iu.start.di.Wheel" ref="rightWheel"></constructor-arg> 
+-->
+
+		<!-- setter -->
+		<property name="engine" ref="engine"></property>
+	</bean>
 		
 </beans>
