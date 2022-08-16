@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 //이 클래스는 Controller 역할
 //Container에게 이 클래스의 객체 생성을 위임
 public class MemberController {
+	
+	@Autowired
+	private BankMemberService bankMemberService;
 
 	//	annotation
 	//	@ : 설명+실행
@@ -30,8 +34,7 @@ public class MemberController {
 	@RequestMapping(value = "login.iu", method = RequestMethod.POST) 
 	public String login(HttpSession session, BankMembersDTO bankMembersDTO) throws Exception {
 		System.out.println("DB에 로그인 실행");
-		BankMembersDAO bankMembersDAO = new BankMembersDAO();
-		bankMembersDTO = bankMembersDAO.getLogin(bankMembersDTO);
+		bankMembersDTO = bankMemberService.getLogin(bankMembersDTO);
 		System.out.println(bankMembersDTO);
 		//HttpSession session = request.getSession();
 		session.setAttribute("member", bankMembersDTO);
@@ -53,8 +56,7 @@ public class MemberController {
 	@RequestMapping(value = "join.iu", method = RequestMethod.POST)
 	public String join(BankMembersDTO bankMembersDTO) throws Exception {
 		System.out.println("Join POST 실행");
-		BankMembersDAO bankMembersDAO = new BankMembersDAO();
-		int result = bankMembersDAO.setJoin(bankMembersDTO);
+		int result = bankMemberService.setJoin(bankMembersDTO);
 		System.out.println(result==1);
 		return "redirect:./login.iu";
 	}
@@ -71,8 +73,7 @@ public class MemberController {
 	public String getSearchByID(String search, Model model) throws Exception {
 		System.out.println("Search POST 실행");
 		
-		BankMembersDAO bankMembersDAO = new BankMembersDAO();
-		ArrayList<BankMembersDTO> ar = bankMembersDAO.getSearchByID(search);
+		ArrayList<BankMembersDTO> ar = bankMemberService.getSearchByID(search);
 		model.addAttribute("list", ar);
 		return "member/list";
 	}
