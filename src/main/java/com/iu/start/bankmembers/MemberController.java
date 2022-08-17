@@ -1,8 +1,7 @@
 package com.iu.start.bankmembers;
 
-import java.util.ArrayList;
+import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,7 +72,7 @@ public class MemberController {
 	public String getSearchByID(String search, Model model) throws Exception {
 		System.out.println("Search POST 실행");
 		
-		ArrayList<BankMembersDTO> ar = bankMemberService.getSearchByID(search);
+		List<BankMembersDTO> ar = bankMemberService.getSearchByID(search);
 		model.addAttribute("list", ar);
 		return "member/list";
 	}

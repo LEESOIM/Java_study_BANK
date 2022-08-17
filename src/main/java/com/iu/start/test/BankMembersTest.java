@@ -22,10 +22,10 @@ public class BankMembersTest {
 //			int result = bankMembersDAO.setJoin(bankMembersDTO);
 //			System.out.println(result == 1);
 			
-			ArrayList<BankMembersDTO> ar = bankMembersDAO.getSearchByID("ㅅ");
-			for(int i=0; i<ar.size(); i++) {
-				System.out.println(ar.get(i).getUserName());
-			}
+//			List<BankMembersDTO> ar = bankMembersDAO.getSearchByID("ㅅ");
+//			for(int i=0; i<ar.size(); i++) {
+//				System.out.println(ar.get(i).getUserName());
+//			}
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
