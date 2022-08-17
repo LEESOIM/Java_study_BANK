@@ -19,8 +19,7 @@ public class BankBookDAO implements BookDAO{
 		
 		PreparedStatement st = con.prepareStatement(sql);
 
-		Long now = System.currentTimeMillis();
-		st.setLong(1, now);
+		st.setLong(1, bankBookDTO.getBookNum());
 		st.setString(2, bankBookDTO.getBookName());
 		st.setDouble(3, bankBookDTO.getBookRate());
 		

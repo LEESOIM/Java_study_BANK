@@ -49,9 +49,14 @@ public class BankBookController {
 	@RequestMapping(value = "add.iu", method = RequestMethod.POST)
 	public ModelAndView add(BankBookDTO bankBookDTO, ModelAndView mv) throws Exception {
 		System.out.println("ADD POST");
+		System.out.println(bankBookDTO.getBookNum());
+		System.out.println(bankBookDTO.getBookSale());
 		System.out.println(bankBookDTO.getBookName());
 		System.out.println(bankBookDTO.getBookRate());
+		
 		BankBookDAO bankBookDAO = new BankBookDAO();
+		Calendar ca = Calendar.getInstance();
+		bankBookDTO.setBookNum(ca.getTimeInMillis());
 		int result = bankBookDAO.setBankBook(bankBookDTO);
 		
 		mv.setViewName("redirect:./list.iu");
