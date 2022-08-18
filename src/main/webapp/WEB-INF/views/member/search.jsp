@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>ID Search</h1>
 	<form action="search.iu" method="post">
-		<input type="text" name="search">
-	
+		<h1>아이디 찾기</h1>
+		
+		<input type="text" name="search" placeholder="아이디">
 		<input type="submit" value="search">
 		<button>search</button>
 	</form>

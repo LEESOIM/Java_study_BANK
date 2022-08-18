@@ -18,7 +18,6 @@ public class MemberController {
 
 	//	annotation
 	//	@ : 설명+실행
-	
 	@Autowired
 	private MemberService memberService;
 	
@@ -27,62 +26,60 @@ public class MemberController {
 	@RequestMapping(value = "login.iu", method = RequestMethod.GET) //절대경로로!
 	public String login() {
 		System.out.println("로그인 실행");
-		return "member/login"; //servlet-context.xml에 앞뒤 url포함
+		return "member/login"; //servlet-context.xml에 앞뒤 경로 추가해줌
 	}
 	
 	@RequestMapping(value = "login.iu", method = RequestMethod.POST) 
 	public String login(HttpSession session, BankMembersDTO bankMembersDTO) throws Exception {
-		System.out.println("DB에 로그인 실행");
-		
+		System.out.println("로그인 성공");
 		bankMembersDTO = memberService.getLogin(bankMembersDTO);
-		System.out.println(bankMembersDTO);
 		//HttpSession session = request.getSession();
-		session.setAttribute("member", bankMembersDTO);
-		//	"redirect:다시접속할 URL주소(절대경로,상대경로)"
+		session.setAttribute("success", bankMembersDTO);
+		
+		//	"redirect:다시접속할 URL주소(절대경로/상대경로)"
 		return "redirect:../"; //상대경로 
 	}
 	
 	
+	
 	//	/member/join GET
 	@RequestMapping(value = "join.iu", method = RequestMethod.GET)
-	public String join() {
-		System.out.println("Join GET 실행");
-		return "member/join";
+	public void join() {
+		System.out.println("회원가입 실행");
+		//return "member/join";
+		//요청한uri 주소와 jsp경로명이 같으면 리턴을 안하고 void로 할 수 있다
 	}
-	
 	
 	//	/member/join POST
 	@RequestMapping(value = "join.iu", method = RequestMethod.POST)
 	public String join(BankMembersDTO bankMembersDTO) throws Exception {
-		System.out.println("Join POST 실행");
-		
+		System.out.println("회원가입 성공");
 		int result = memberService.setJoin(bankMembersDTO);
 		System.out.println(bankMembersDTO.getUserName());
 		System.out.println(bankMembersDTO.getPassword());
-		return "redirect:./login.iu";
+		return "redirect:login.iu";
 	}
 	
 	
 	
 	@RequestMapping(value="search.iu", method=RequestMethod.GET)
 	public void getSearchByID() throws Exception {
-		System.out.println("Search GET 실행");
-		//요청한uri 주소와 jsp경로명이 같으면 리턴을 안하고 void로 할 수 있다
+		System.out.println("아이디찾기 실행");
 	}
-	
 	
 	@RequestMapping(value="search.iu", method=RequestMethod.POST)
 	public String getSearchByID(String search, Model model) throws Exception {
-		System.out.println("Search POST 실행");
-		
+		System.out.println("아이디찾기 성공");
 		List<BankMembersDTO> ar = memberService.getSearchByID(search);
 		model.addAttribute("list", ar);//jsp로 보낼 데이터를 model에 담는다
 		return "member/list";
 	}
 	
 	
+	
 	@RequestMapping(value="logout.iu", method = RequestMethod.GET)
 	public String logout(HttpSession session) throws Exception {
+		System.out.println("로그아웃 성공");
 		session.invalidate();
 		return "redirect:../";
 	}

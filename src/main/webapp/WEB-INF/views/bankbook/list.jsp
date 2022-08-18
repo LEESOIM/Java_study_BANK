@@ -13,7 +13,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>BankBook List</h1>
+	<h1>상품리스트</h1>
 	<!-- /bankbook/list -->
 	
 	<!-- /bankbook/detail jsp:detail.jsp -->

@@ -15,7 +15,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>BankBook Detail</h1>
+	<h1>상품 상세페이지</h1>
 	
 	<table border="1">
 		<tr>
@@ -27,10 +27,8 @@
 		<tr>
 			<td>${requestScope.dto.getBookNum()}</td>
 			<td>${requestScope.dto.bookName}</td>
-			<td>${dto.bookRate}</td>
-			<td>
-				
-			</td>
+			<td>${requestScope.dto.bookRate}</td>
+			<td>${requestScope.dto.bookSale}</td>
 		</tr>
 	</table>
 	
@@ -43,7 +41,7 @@
 	<a href="update.iu?bookNum=${dto.bookNum}">수정</a>
 	<a href="delete.iu?bookNum=${dto.bookNum}">삭제</a>
 	
-	<c:if test="${not empty sessionScope.member }">
+	<c:if test="${not empty sessionScope.success }">
 		<a href="../bankaccount/add.iu?bookNum=${dto.bookNum}">가입하기</a>
 	</c:if>
 	

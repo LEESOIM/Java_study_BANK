@@ -16,7 +16,7 @@ public class MemberService {
 		return bankMembersDAO.setJoin(bankMembersDTO);
 	}
 	
-	//검색어를 입력해서 ID 찾기
+	//검색어를 입력해서 ID찾기
 	public List<BankMembersDTO> getSearchByID(String search) throws Exception {
 		return bankMembersDAO.getSearchByID(search);
 	}

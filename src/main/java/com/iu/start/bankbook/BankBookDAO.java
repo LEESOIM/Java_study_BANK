@@ -1,115 +1,39 @@
 package com.iu.start.bankbook;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.List;
 
-import com.iu.start.util.DBConnector;
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-public class BankBookDAO implements BookDAO{
-
-	@Override
+@Repository
+public class BankBookDAO {
+	
+	@Autowired
+	private SqlSession sqlSession;
+	private final String NAMESPACE = "com.iu.start.bankbook.BankBookDAO.";
+	
 	public int setBankBook(BankBookDTO bankBookDTO) throws Exception {
-		
-		Connection con = DBConnector.getConnection();
-		
-		String sql = "INSERT INTO BANKBOOK VALUES(?,?,?,1)";
-		
-		PreparedStatement st = con.prepareStatement(sql);
-
-		st.setLong(1, bankBookDTO.getBookNum());
-		st.setString(2, bankBookDTO.getBookName());
-		st.setDouble(3, bankBookDTO.getBookRate());
-		
-		int result = st.executeUpdate();
-		
-		DBConnector.disConnect(st, con);
-		return result;
+		return sqlSession.insert(NAMESPACE+"setBankBook", bankBookDTO);
 	}
-	
 
-	@Override
-	public ArrayList<BankBookDTO> getList() throws Exception {
-		ArrayList<BankBookDTO> ar = new ArrayList<BankBookDTO>();
-		Connection con = DBConnector.getConnection();
-		String sql = "SELECT * FROM BANKBOOK ORDER BY BOOKNUM DESC";
-		PreparedStatement st = con.prepareStatement(sql);
-	
-		ResultSet rs = st.executeQuery();
-		while(rs.next()) {
-			BankBookDTO bankBookDTO = new BankBookDTO();
-			bankBookDTO.setBookNum(rs.getLong("BOOKNUM"));
-			bankBookDTO.setBookName(rs.getString("BOOKNAME"));
-			bankBookDTO.setBookRate(rs.getDouble("BOOKRATE"));
-			bankBookDTO.setBookSale(rs.getInt("BOOKSALE"));
-			
-			ar.add(bankBookDTO);
-		}
-		DBConnector.disConnect(rs, st, con);
-		return ar;
+	public List<BankBookDTO> getList() throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getList");
 	}
-	
 
-	@Override
 	public int setChangeSale(BankBookDTO bankBookDTO) throws Exception {
-		Connection con = DBConnector.getConnection();
-		String sql = "UPDATE BANKBOOK SET BOOKSALE=? WHERE BOOKNUM=?";
-		PreparedStatement st = con.prepareStatement(sql);
-
-		st.setInt(1, bankBookDTO.getBookSale());
-		st.setLong(2, bankBookDTO.getBookNum());
-		
-		int result = st.executeUpdate();
-		DBConnector.disConnect(st, con);
-		return result;
+		return sqlSession.update(NAMESPACE+"setChangeSale", bankBookDTO);
 	}
 
-	@Override
 	public BankBookDTO getDetail(BankBookDTO bankBookDTO) throws Exception {
-		BankBookDTO dto = null;
-		Connection con = DBConnector.getConnection();
-		String sql = "SELECT * FROM BANKBOOK WHERE BOOKNUM=?";
-		PreparedStatement st = con.prepareStatement(sql);
-
-		st.setLong(1, bankBookDTO.getBookNum());
-		ResultSet rs = st.executeQuery();
-		if(rs.next()) {
-			dto = new BankBookDTO();
-			dto.setBookNum(rs.getLong("BOOKNUM"));
-			dto.setBookName(rs.getString("BOOKNAME"));
-			dto.setBookRate(rs.getDouble("BOOKRATE"));
-			dto.setBookSale(rs.getInt("BOOKSALE"));
-		}
-		DBConnector.disConnect(rs, st, con);
-		return dto;
+		return sqlSession.selectOne(NAMESPACE+"getDetail", bankBookDTO);
 	}
 
-
-	@Override
 	public int setUpdate(BankBookDTO bankBookDTO) throws Exception {
-		Connection con = DBConnector.getConnection();
-		String sql = "UPDATE BANKBOOK SET BOOKNAME=?, BOOKRATE=? WHERE BOOKNUM=?";
-		PreparedStatement st = con.prepareStatement(sql);
-	
-		st.setString(1, bankBookDTO.getBookName());
-		st.setDouble(2, bankBookDTO.getBookRate());
-		st.setLong(3, bankBookDTO.getBookNum());
-		
-		int result = st.executeUpdate();
-		DBConnector.disConnect(st, con);
-		return result;
+		return sqlSession.update(NAMESPACE+"setUpdate", bankBookDTO);
 	}
-	
 	
 	public int setDelete(BankBookDTO bankBookDTO) throws Exception {
-		Connection con = DBConnector.getConnection();
-		String sql = "DELETE BANKBOOK WHERE BOOKNUM=?";
-		PreparedStatement st = con.prepareStatement(sql);
-		st.setLong(1, bankBookDTO.getBookNum());
-		int result = st.executeUpdate();
-		DBConnector.disConnect(st, con);
-		return result;
+		return sqlSession.delete(NAMESPACE+"setDelete", bankBookDTO);
 	}
 }

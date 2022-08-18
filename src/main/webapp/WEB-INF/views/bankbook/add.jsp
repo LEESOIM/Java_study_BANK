@@ -19,8 +19,8 @@
 		</div>
 		
 		<div>
-			<input type="submit" value="Create">
-			<button type="submit">ADD</button>
+			<input type="submit" value="상품등록">
+			<button type="submit">상품등록</button>
 		</div>
 	</form>
 </body>

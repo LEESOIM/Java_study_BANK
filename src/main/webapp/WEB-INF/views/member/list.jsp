@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Member LIST</h1>
+	<h1>아이디 찾기</h1>
 
 	<table>
 		<thead>
@@ -49,7 +49,5 @@
 		<%} %> --%>
 		</tbody>
 	</table>
-	
-
 </body>
 </html>

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>UPDATE PAGE</h1>
+<h1>상품 수정</h1>
 	<form action="update.iu" method="post" >
 	
 		<input type="hidden" name="bookNum" value="${dto.bookNum }" >
