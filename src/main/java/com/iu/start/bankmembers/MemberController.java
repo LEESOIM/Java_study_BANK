@@ -33,11 +33,11 @@ public class MemberController {
 	@RequestMapping(value = "login.iu", method = RequestMethod.POST) 
 	public String login(HttpSession session, BankMembersDTO bankMembersDTO) throws Exception {
 		System.out.println("DB에 로그인 실행");
+		
 		bankMembersDTO = memberService.getLogin(bankMembersDTO);
 		System.out.println(bankMembersDTO);
 		//HttpSession session = request.getSession();
 		session.setAttribute("member", bankMembersDTO);
-		
 		//	"redirect:다시접속할 URL주소(절대경로,상대경로)"
 		return "redirect:../"; //상대경로 
 	}
@@ -55,8 +55,8 @@ public class MemberController {
 	@RequestMapping(value = "join.iu", method = RequestMethod.POST)
 	public String join(BankMembersDTO bankMembersDTO) throws Exception {
 		System.out.println("Join POST 실행");
+		
 		int result = memberService.setJoin(bankMembersDTO);
-		System.out.println(result==1);
 		System.out.println(bankMembersDTO.getUserName());
 		System.out.println(bankMembersDTO.getPassword());
 		return "redirect:./login.iu";
@@ -67,6 +67,7 @@ public class MemberController {
 	@RequestMapping(value="search.iu", method=RequestMethod.GET)
 	public void getSearchByID() throws Exception {
 		System.out.println("Search GET 실행");
+		//요청한uri 주소와 jsp경로명이 같으면 리턴을 안하고 void로 할 수 있다
 	}
 	
 	
@@ -75,7 +76,7 @@ public class MemberController {
 		System.out.println("Search POST 실행");
 		
 		List<BankMembersDTO> ar = memberService.getSearchByID(search);
-		model.addAttribute("list", ar);
+		model.addAttribute("list", ar);//jsp로 보낼 데이터를 model에 담는다
 		return "member/list";
 	}
 	
