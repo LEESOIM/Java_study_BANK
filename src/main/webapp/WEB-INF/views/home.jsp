@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>
-		Hello world! 🎈🎀🎁🎡🎠
+		Hello SOIM World! 🎈🎀🎁🎡🎠
 	</h1>
 	<P>  The time on the server is ${serverTime}. </P>
 	
@@ -21,13 +21,14 @@
 		<c:if test="${not empty sessionScope.success }">
 		<h3>${sessionScope.success.name}님 환영합니다</h3>
 			<a href="./member/logout.iu">로그아웃</a>
-			<a href="./member/mypage.iu">마이페이지</a>
+			<a href="#">마이페이지</a>
 		</c:if>	
 	</div>
 	
 	<div>
 		<a href="./member/search.iu">아이디 찾기</a>
-		<a href="./bankbook/list.iu">상품리스트</a>
+		<a href="./bankbook/list.iu">상품목록</a>
+		<a href="./notice/list.iu">글목록</a>
 	</div>
 </body>
 </html>

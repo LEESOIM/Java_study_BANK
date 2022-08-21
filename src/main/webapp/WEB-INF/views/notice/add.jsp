@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Account ADD</h1>
-
+	
 </body>
 </html>
