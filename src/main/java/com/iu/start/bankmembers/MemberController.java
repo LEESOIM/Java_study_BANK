@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.iu.start.bankAccount.BankAccountDTO;
+import com.iu.start.bankAccount.BankAccountService;
+
 @Controller 
 @RequestMapping(value="/member/*")
 //이 클래스는 Controller 역할
@@ -22,6 +25,8 @@ public class MemberController {
 	//	@ : 설명+실행
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private BankAccountService bankAccountService;
 	
 	
 	//	/member/login
@@ -91,8 +96,14 @@ public class MemberController {
 	public ModelAndView myPage(HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		BankMembersDTO bankMembersDTO = (BankMembersDTO) session.getAttribute("success");
-		Map<String, Object> map = memberService.getMyPage(bankMembersDTO);
-		mv.addObject("map", map);
+//		Map<String, Object> map = memberService.getMyPage(bankMembersDTO); (1)
+//		mv.addObject("map", map);
+		
+		bankMembersDTO = memberService.getMyPage(bankMembersDTO); //(3)		
+		//List<BankAccountDTO> ar = bankAccountService.getListByUserName(bankMembersDTO); (2)
+		//mv.addObject("list", ar);
+		mv.addObject("dto", bankMembersDTO);
+		
 		mv.setViewName("member/myPage");
 		return mv;
 	}

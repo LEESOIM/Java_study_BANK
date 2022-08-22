@@ -8,15 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.iu.start.bankAccount.BankAccountDAO;
-import com.iu.start.bankAccount.BankAccountDTO;
 
 @Service
 public class MemberService {
 
 	@Autowired
 	private BankMembersDAO bankMembersDAO;
-	@Autowired
-	private BankAccountDAO bankAccountDAO;
+//	@Autowired
+//	private BankAccountDAO bankAccountDAO;
 
 	
 	//bankMembers 회원가입
@@ -35,13 +34,18 @@ public class MemberService {
 	}
 	
 	//마이페이지
-	public Map<String, Object> getMyPage(BankMembersDTO bankMembersDTO) throws Exception {
-		Map<String, Object> map = new HashMap<String, Object>();
-		List<BankAccountDTO> ar = bankAccountDAO.getListByUserName(bankMembersDTO);
-		bankMembersDTO = bankMembersDAO.getMyPage(bankMembersDTO);
-		map.put("list", ar);
-		map.put("dto", bankMembersDTO);
-		return map;
-	}
+	public BankMembersDTO getMyPage(BankMembersDTO bankMembersDTO) throws Exception {
+		return bankMembersDAO.getMyPage(bankMembersDTO);
 	}
 	
+//	public Map<String, Object> getMyPage(BankMembersDTO bankMembersDTO) throws Exception { (2)
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		List<BankAccountDTO> ar = bankAccountDAO.getListByUserName(bankMembersDTO);
+//		bankMembersDTO = bankMembersDAO.getMyPage(bankMembersDTO);
+//		map.put("list", ar);
+//		map.put("dto", bankMembersDTO);
+//		return map;
+//	}
+	
+
+}

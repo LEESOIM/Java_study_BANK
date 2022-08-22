@@ -16,9 +16,35 @@
 	<insert id="setJoin" parameterType="BankMembersDTO">
 		INSERT INTO BANKMEMBERS VALUES(#{userName},#{password},#{name},#{email},#{phone})
 	</insert>
-	
+<!-- 	
 	<select id="getMyPage" parameterType="BankMembersDTO" resultType="BankMembersDTO">
 		SELECT USERNAME, NAME, EMAIL, PHONE FROM BANKMEMBERS WHERE USERNAME=#{userName}
 	</select>
+ -->	
+	<select id="getMyPage" parameterType="BankMembersDTO" resultMap="getMyPageResult">
+		SELECT USERNAME, M.NAME, M.EMAIL, M.PHONE, A.ACCOUNTNUM, B.BOOKNAME, A.ACCOUNTDATE
+		FROM BANKMEMBERS M
+		INNER JOIN BANKACCOUNT A
+		USING (USERNAME)
+		INNER JOIN BANKBOOK B
+		USING (BOOKNUM)
+		WHERE USERNAME=#{userName}
+	</select>
+	
+	<resultMap type="BankMembersDTO" id="getMyPageResult">
+		<id column="USERNAME" property="userName"/> <!-- id는 PK용도 -->
+		<result column="NAME" property="name"/> 
+		<result column="EMAIL" property="email"/>
+		<result column="PHONE" property="phone"/>
+
+				<!-- property="멤버변수" javaType="데이터타입" ofType="제네릭" -->
+		<collection property="bankAccountDTOs" javaType="List" ofType="BankAccountDTO"> <!-- collection 1:N관계일때 -->
+			<id column="ACCOUNTNUM" property="accountNum"/>
+			<result column="ACCOUNTDATE" property="accountDate"/>
+			<association property="bankBookDTO" javaType="BankBookDTO">
+				<result column="BOOKNAME" property="bookName"/>
+			</association>
+		</collection>
+	</resultMap>
 	
 </mapper>

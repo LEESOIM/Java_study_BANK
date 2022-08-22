@@ -20,7 +20,7 @@
 	<resultMap type="BankAccountDTO" id="getListByUserNameResult">
 		<id column="ACCOUNTNUM" property="accountNum"/>
 		<result column="ACCOUNTDATE" property="accountDate"/>
-		<association property="bankBookDTO" javaType="BankBookDTO">
+		<association property="bankBookDTO" javaType="BankBookDTO"> <!-- association 1:1관계일때 -->
 			<result column="BOOKNAME" property="bookName"/>
 		</association>	
 	</resultMap>
