@@ -5,13 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
-<body>
-<section class="container-fluid col-lg-8">
-	<h1>My Page</h1>
+<body class="text-center">
+<c:import url="../template/header.jsp"></c:import>
+<section class="container-fluid col-lg-7">
+	<h1 class="mt-5 mb-5 fw-normal">My Page</h1>
 	<div class="row">
-		<table class="table table-dark">
 <!-- jsp에 java의 data를 출력할땐 EL을 사용한다 ! ! -->
 
 	<%-- 
@@ -46,28 +47,42 @@ requestScope : 작은영역부터 넓은영역까지 찾으러감(page<request<s
 			<p>통장개설일 : ${dto.accountDate }</p>
 		</c:forEach>
 	 --%>
- 
-	 	<thead>
-	 		<tr>
-	 			<th>ID</th><th>NAME</th><th>EMAIL</th><th>PHONE</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>${requestScope.dto.userName }</td>
-				<td>${dto.name }</td>
-				<td>${dto.email }</td>
-				<td>${dto.phone }</td>
-			</tr>
-		</tbody>
-		
-		<c:forEach items="${dto.bankAccountDTOs }" var="dto">
-			<p>계좌번호 : ${pageScope.dto.accountNum }</p>
-			<p>통장이름 : ${dto.bankBookDTO.bookName }</p>
-			<p>통장개설일 : ${dto.accountDate }</p>
-		</c:forEach>
-		</table>	
+ 		<table class="table table-dark mb-5">
+		 	<thead>
+		 		<tr>
+		 			<th>ID</th><th>NAME</th><th>EMAIL</th><th>PHONE</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>${requestScope.dto.userName }</td>
+					<td>${dto.name }</td>
+					<td>${dto.email }</td>
+					<td>${dto.phone }</td>
+				</tr>
+			</tbody>
+			</table>
+			
+			<table class="table table-striped mt-3 mb-5">
+			<thead>
+				<tr>
+					<th>계좌번호</th><th>통장이름</th><th>개설일</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${dto.bankAccountDTOs }" var="dto">
+				<tr>
+					<td>${pageScope.dto.accountNum }</td>
+					<td>${dto.bankBookDTO.bookName }</td>
+					<td>${dto.accountDate }</td>
+				</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+			
 	</div>
 </section>
+<c:import url="../template/footer.jsp"></c:import>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -32,7 +32,7 @@ public class HomeController {
 		Cookie cookie = new Cookie("hi", "hello");
 		cookie.setMaxAge(60); //60초있다가 사라졋
 		response.addCookie(cookie);
-		return "home";
+		return "index";
 	}
 	
 }
