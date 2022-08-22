@@ -17,4 +17,8 @@
 		INSERT INTO BANKMEMBERS VALUES(#{userName},#{password},#{name},#{email},#{phone})
 	</insert>
 	
+	<select id="getMyPage" parameterType="BankMembersDTO" resultType="BankMembersDTO">
+		SELECT USERNAME, NAME, EMAIL, PHONE FROM BANKMEMBERS WHERE USERNAME=#{userName}
+	</select>
+	
 </mapper>

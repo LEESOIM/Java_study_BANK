@@ -1,4 +1,4 @@
-package com.iu.start.bankmembers;
+package com.iu.start.bankMembers;
 
 import static org.junit.Assert.*;
 
@@ -8,6 +8,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.iu.start.MyAbstractTest;
+import com.iu.start.bankmembers.BankMembersDAO;
+import com.iu.start.bankmembers.BankMembersDTO;
 
 public class BankMembersDAOTest extends MyAbstractTest {
 
@@ -41,6 +43,15 @@ public class BankMembersDAOTest extends MyAbstractTest {
 		bankMembersDTO.setUserName("ㅇㅅㅇ");
 		bankMembersDTO.setPassword("1234");
 		bankMembersDTO = bankMembersDAO.getLogin(bankMembersDTO);
+		assertNotNull(bankMembersDTO);
+	}
+	
+	@Test
+	public void getMyPage() throws Exception {
+		BankMembersDTO bankMembersDTO = new BankMembersDTO();
+		bankMembersDTO.setUserName("ㅇㅅㅇ");
+		bankMembersDTO = bankMembersDAO.getMyPage(bankMembersDTO);
+		System.out.println(bankMembersDTO.getEmail());
 		assertNotNull(bankMembersDTO);
 	}
 

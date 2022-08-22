@@ -21,7 +21,7 @@
 		<c:if test="${not empty sessionScope.success }">
 		<h3>${sessionScope.success.name}님 환영합니다</h3>
 			<a href="./member/logout.iu">로그아웃</a>
-			<a href="#">마이페이지</a>
+			<a href="./member/myPage.iu">마이페이지</a>
 		</c:if>	
 	</div>
 	

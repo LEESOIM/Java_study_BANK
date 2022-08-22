@@ -1,16 +1,19 @@
 package com.iu.start.notice;
 
-import java.util.Calendar;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.iu.start.bankbook.BankBookDTO;
+import com.iu.start.bankmembers.BankMembersDTO;
+
 
 @Controller
 @RequestMapping(value = "/notice/*")
@@ -40,7 +43,10 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "add.iu", method = RequestMethod.POST)
-	public ModelAndView add(NoticeDTO noticeDTO, ModelAndView mv) throws Exception {
+	public ModelAndView add(NoticeDTO noticeDTO, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		BankMembersDTO bankMembersDTO = (BankMembersDTO) session.getAttribute("success");
+		noticeDTO.setWriter(bankMembersDTO.getUserName());
 		int result = noticeService.setNotice(noticeDTO);
 		mv.setViewName("redirect:./list.iu");
 		return mv;

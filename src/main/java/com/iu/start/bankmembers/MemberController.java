@@ -1,6 +1,7 @@
 package com.iu.start.bankmembers;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller 
 @RequestMapping(value="/member/*")
@@ -82,6 +84,17 @@ public class MemberController {
 		System.out.println("로그아웃 성공");
 		session.invalidate();
 		return "redirect:../";
+	}
+	
+	
+	@RequestMapping(value = "myPage.iu", method = RequestMethod.GET)
+	public ModelAndView myPage(HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		BankMembersDTO bankMembersDTO = (BankMembersDTO) session.getAttribute("success");
+		Map<String, Object> map = memberService.getMyPage(bankMembersDTO);
+		mv.addObject("map", map);
+		mv.setViewName("member/myPage");
+		return mv;
 	}
 
 }

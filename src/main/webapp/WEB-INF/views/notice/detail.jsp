@@ -10,31 +10,26 @@
 <body>
 	<h1>상세페이지</h1>
 	<table border="1">
-		<thead>
-			<tr>
-				<th>글번호</th>
-				<th>제목</th>
-				<th>내용</th>
-				<th>작성자</th>
-				<th>작성일</th>
-				<th>조회수</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${requestScope.list }" var="dto">
-				<tr>
-					<td>${pageScope.dto.num }</td>
-					<td><a href="./detail.iu?num=${pageScope.dto.num }">${pageScope.dto.title }</a></td>
-					<td>${dto.contents }</td>
-					<td>${dto.writer }</td>
-					<td>${dto.regDate }</td>
-					<td>${dto.hit }</td>
-				</tr>
-			</c:forEach>
-		</tbody>
+		<tr>
+			<th>글번호</th>
+			<th>제목</th>
+			<th>내용</th>
+			<th>작성자</th>
+			<th>작성일</th>
+			<th>조회수</th>
+		</tr>
+		<tr>
+			<td>${requestScope.dto.num }</td>
+			<td>${requestScope.dto.title }</td>
+			<td>${dto.contents }</td>
+			<td>${dto.writer }</td>
+			<td>${dto.regDate }</td>
+			<td>${dto.hit }</td>
+		</tr>
 	</table>
+	
 <a href="./list.iu">글목록</a>	
-<a href="./update.iu">글수정</a>	
-<a href="./delete.iu">글삭제</a>
+<a href="./update.iu?num=${dto.num }">글수정</a>	
+<a href="./delete.iu?num=${dto.num }">글삭제</a>
 </body>
 </html>

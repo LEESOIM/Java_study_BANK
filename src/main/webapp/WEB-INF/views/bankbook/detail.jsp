@@ -4,9 +4,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!-- 
 //요청이 발생하면 생성, 응답이 나가면 소멸 : RequestScope
-    <%
-    BankBookDTO bankBookDTO = (BankBookDTO)request.getAttribute("dto");
-    %>
+<%--     
+    <% BankBookDTO bankBookDTO = (BankBookDTO)request.getAttribute("dto");%> 
+--%>
 -->
 <!DOCTYPE html>
 <html>

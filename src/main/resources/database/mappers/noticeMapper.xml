@@ -6,7 +6,7 @@
 <mapper namespace="com.iu.start.notice.NoticeDAO">
 
 	<select id="getList" resultType="NoticeDTO">
-		SELECT * FROM NOTICE;
+		SELECT * FROM NOTICE
 	</select>
 	
 	<select id="getDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
@@ -14,7 +14,7 @@
 	</select>
 
 	<insert id="setNotice" parameterType="NoticeDTO">
-		INSERT INTO NOTICE VALUES(NOTICE_SEQ.NEXTVAL,#{title},#{contents},#{writer},SYSDATE,#{hit})
+		INSERT INTO NOTICE VALUES(NOTICE_SEQ.NEXTVAL,#{title},#{contents},#{writer},SYSDATE,0)
 	</insert>
 	
 	<update id="setUpdate" parameterType="NoticeDTO">
