@@ -17,27 +17,27 @@ public class BankMembersDAOTest extends MyAbstractTest {
 	private BankMembersDAO bankMembersDAO;
 	
 //	@Test
-//	public void setJoinTest() throws Exception {
-//		BankMembersDTO bankMembersDTO = new BankMembersDTO();
-//		bankMembersDTO.setUserName("id2");
-//		bankMembersDTO.setPassword("pw2");
-//		bankMembersDTO.setName("name2");
-//		bankMembersDTO.setEmail("email2");
-//		bankMembersDTO.setPhone("051-00000");
-//		int result = bankMembersDAO.setJoin(bankMembersDTO);
-//		assertEquals(1, result);
-//	}
-	
-	
-	@Test
-	public void getSearchTest() throws Exception {
-		String search = "ㅇㅅㅇ";
-		List<BankMembersDTO> ar = bankMembersDAO.getSearchByID(search);
-		assertNotNull(ar.size());
+	public void setJoinTest() throws Exception {
+		BankMembersDTO bankMembersDTO = new BankMembersDTO();
+		bankMembersDTO.setUserName("id2");
+		bankMembersDTO.setPassword("pw2");
+		bankMembersDTO.setName("name2");
+		bankMembersDTO.setEmail("email2");
+		bankMembersDTO.setPhone("051-00000");
+		int result = bankMembersDAO.setJoin(bankMembersDTO);
+		assertEquals(1, result);
 	}
 	
 	
-	@Test
+//	@Test
+	public void getSearchTest() throws Exception {
+		String search = "ㅇㅅㅇ";
+		List<BankMembersDTO> ar = bankMembersDAO.getSearchByID(search);
+		assertEquals(1, ar.size());
+	}
+	
+	
+//	@Test
 	public void getLoginTest() throws Exception {
 		BankMembersDTO bankMembersDTO = new BankMembersDTO();
 		bankMembersDTO.setUserName("ㅇㅅㅇ");
@@ -46,8 +46,8 @@ public class BankMembersDAOTest extends MyAbstractTest {
 		assertNotNull(bankMembersDTO);
 	}
 	
-	@Test
-	public void getMyPage() throws Exception {
+//	@Test
+	public void getMyPageTest() throws Exception {
 		BankMembersDTO bankMembersDTO = new BankMembersDTO();
 		bankMembersDTO.setUserName("ㅇㅅㅇ");
 		bankMembersDTO = bankMembersDAO.getMyPage(bankMembersDTO);

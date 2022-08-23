@@ -12,22 +12,22 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-<c:import url="../template/header.jsp"></c:import>
 </head>
 <body>
+<c:import url="../template/header.jsp"></c:import>
 	<!-- /bankbook/list -->
 	
 	<!-- /bankbook/detail jsp:detail.jsp -->
 	<!-- link 주소는 상대경로 작성 -->
 	<section class="container-fluid col-lg-7 mt-5">
-	<table class="table table-striped mt-3 mb-5">
-	<h1>BankBook List</h1>
+	<table class="table table-striped mt-3 mb-3">
+	<h1 class="mb-5 fw-normal text-center">상품목록</h1>
 		<thead>
 			<tr>
-				<th>Num</th>
-				<th>Name</th>
-				<th>Rate</th>
-				<th>Sale</th>
+				<th>일련번호</th>
+				<th>통장이름</th>
+				<th>이자율</th>
+				<th>판매여부</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -60,7 +60,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<a href="./add.iu">상품등록</a>
+	<a class="btn btn-primary" href="./add.iu">상품등록</a>
 	</section>
 <c:import url="../template/footer.jsp"></c:import>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>

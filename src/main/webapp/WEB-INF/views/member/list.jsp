@@ -13,7 +13,7 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 <section class="container-fluid col-lg-7 mt-5">
-<h2>아이디 찾기</h2>
+<h1 class="mt-5 mb-5 fw-normal text-center">아이디 찾기</h1>
 	<table class="table table-striped mt-3 mb-5">
 		<thead>
 			<tr>

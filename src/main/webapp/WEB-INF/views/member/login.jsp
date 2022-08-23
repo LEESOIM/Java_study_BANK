@@ -21,7 +21,7 @@
 	 	<div class="row">
 			<main class="form-signin w-80 m-auto">
 				<form action="login.iu" method="post">
-				  <h1 class="h3 mb-3 fw-normal">로그인</h1>
+				  <h1 class="mb-5 fw-normal text-center">로그인</h1>
 
 				  <div class="form-floating">
 					<input type="text" class="form-control" name="userName" id="floatingInput" placeholder="ID" value="ㅇㅅㅇ">
@@ -38,8 +38,7 @@
 			  </main>
 	 	</div>
 	 </section>
-
-	 <c:import url="../template/footer.jsp"></c:import>
+<c:import url="../template/footer.jsp"></c:import>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>
 </html>

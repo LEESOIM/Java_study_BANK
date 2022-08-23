@@ -10,8 +10,15 @@ public class BankBookDTO {
 	private String bookName;
 	private Double bookRate;
 	private Integer bookSale;
+	private String bookContents;  
 	private List<BankAccountDTO> bankAccountDTOs; //1:N
 	
+	public String getBookContents() {
+		return bookContents;
+	}
+	public void setBookContents(String bookContents) {
+		this.bookContents = bookContents;
+	}
 	public Long getBookNum() {
 		return bookNum;
 	}

@@ -1,5 +1,6 @@
 package com.iu.start.bankAccount;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 import java.util.List;
@@ -20,6 +21,6 @@ public class BankAccountDAOTest extends MyAbstractTest {
 		BankMembersDTO bankMembersDTO = new BankMembersDTO();
 		bankMembersDTO.setUserName("ㅇㅅㅇ");
 		List<BankAccountDTO> ar = bankAccountDAO.getListByUserName(bankMembersDTO);
-		assertNotEquals(0, ar.size());
+		assertEquals(1, ar.size());
 	}
 }

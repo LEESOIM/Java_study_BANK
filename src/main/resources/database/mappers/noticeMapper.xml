@@ -3,26 +3,26 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.iu.start.notice.NoticeDAO">
+<mapper namespace="com.iu.start.board.notice.NoticeDAO">
 
 	<select id="getList" resultType="NoticeDTO">
-		SELECT * FROM NOTICE
+		SELECT NUM, TITLE, WRITER, REGDATE, HIT FROM NOTICE ORDER BY NUM DESC
 	</select>
 	
-	<select id="getDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
+	<select id="getDetail" parameterType="BoardDTO" resultType="NoticeDTO">
 		SELECT * FROM NOTICE WHERE NUM=#{num}
 	</select>
-
-	<insert id="setNotice" parameterType="NoticeDTO">
-		INSERT INTO NOTICE VALUES(NOTICE_SEQ.NEXTVAL,#{title},#{contents},#{writer},SYSDATE,0)
+	
+	<insert id="setAdd" parameterType="BoardDTO">
+		INSERT INTO NOTICE VALUES(BOARD_SEQ.NEXTVAL,#{title},#{contents},#{writer},SYSDATE,0)
 	</insert>
 	
-	<update id="setUpdate" parameterType="NoticeDTO">
+	<update id="setUpdate" parameterType="BoardDTO">
 		UPDATE NOTICE SET TITLE=#{title}, CONTENTS=#{contents} WHERE NUM=#{num}
-	</update>		
+	</update>
 	
-	<delete id="setDelete" parameterType="NoticeDTO">
+	<delete id="setDelete" parameterType="BoardDTO">
 		DELETE NOTICE WHERE NUM=#{num}
 	</delete>
-	
+
 </mapper>

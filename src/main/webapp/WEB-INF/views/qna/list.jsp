@@ -11,7 +11,7 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 	<section class="container-fluid col-lg-7 mt-5">
-	<h1 class="mb-5 fw-normal text-center">공지사항</h1>
+	<h1 class="mb-5 fw-normal text-center">QnA</h1>
 	<table class="table table-striped mt-3 mb-3">
 		<thead>
 			<tr>
@@ -34,9 +34,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<c:if test="${not empty sessionScope.success}">
-		<a class="btn btn-primary" href="./add.iu">글쓰기</a>
-	</c:if>
+	<a class="btn btn-primary" href="./add.iu">글쓰기</a>
 	</section>
 <c:import url="../template/footer.jsp"></c:import>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
