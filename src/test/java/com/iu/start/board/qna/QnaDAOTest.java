@@ -30,17 +30,17 @@ public class QnaDAOTest extends MyAbstractTest {
 		assertNotNull(boardDTO);
 	}
 	
-//	@Test
+	@Test
 	public void setAddTest() throws Exception {
 		QnaDTO qnaDTO = new QnaDTO();
-		qnaDTO.setTitle("제목");
-		qnaDTO.setContents("내용");
-		qnaDTO.setWriter("작성자");
+		qnaDTO.setTitle("qna제목");
+		qnaDTO.setContents("qna내용");
+		qnaDTO.setWriter("qna작성자");
 		int result = qnaDAO.setAdd(qnaDTO);
 		assertEquals(1, result);
 	}
 	
-	@Test
+//	@Test
 	public void setUpdateTest() throws Exception {
 		QnaDTO qnaDTO = new QnaDTO();
 		qnaDTO.setTitle("제목수정");
@@ -50,7 +50,7 @@ public class QnaDAOTest extends MyAbstractTest {
 		assertEquals(1, result);
 	}
 	
-	@Test
+//	@Test
 	public void setDelete() throws Exception {
 		QnaDTO qnaDTO = new QnaDTO();
 		qnaDTO.setNum(62L);

@@ -20,8 +20,8 @@
 	<!-- /bankbook/detail jsp:detail.jsp -->
 	<!-- link 주소는 상대경로 작성 -->
 	<section class="container-fluid col-lg-7 mt-5">
-	<table class="table table-striped mt-3 mb-3">
 	<h1 class="mb-5 fw-normal text-center">상품목록</h1>
+	<table class="table table-striped mt-3 mb-3">
 		<thead>
 			<tr>
 				<th>일련번호</th>

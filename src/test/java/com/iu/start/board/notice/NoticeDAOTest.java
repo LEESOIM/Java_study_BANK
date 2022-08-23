@@ -24,7 +24,7 @@ public class NoticeDAOTest extends MyAbstractTest {
 	}
 	
 	
-//	@Test
+	@Test
 	public void setAddTest() throws Exception {
 		NoticeDTO noticeDTO = new NoticeDTO(); 
 		noticeDTO.setTitle("제목");

@@ -43,7 +43,7 @@ public class QnaController {
 	@RequestMapping(value = "add.iu", method = RequestMethod.POST)
 	public String setAdd(BoardDTO boardDTO) throws Exception {
 		int result = qnaService.setAdd(boardDTO);
-		return "redirect:add.iu";
+		return "redirect:list.iu";
 	}
 	
 	@RequestMapping(value = "update.iu", method = RequestMethod.GET)
@@ -57,9 +57,10 @@ public class QnaController {
 	@RequestMapping(value = "update.iu", method = RequestMethod.POST)
 	public String setUpdate(BoardDTO boardDTO) throws Exception {
 		int result = qnaService.setUpdate(boardDTO);
-		return "redirect:update.iu?num="+boardDTO.getNum();
+		return "redirect:detail.iu?num="+boardDTO.getNum();
 	}
 	
+	@RequestMapping(value = "delete.iu", method = RequestMethod.GET)
 	public String setDelete(BoardDTO boardDTO) throws Exception {
 		int result = qnaService.setDelete(boardDTO);
 		return "redirect:list.iu";

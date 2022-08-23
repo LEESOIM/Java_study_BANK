@@ -69,6 +69,7 @@ public class NoticeController {
 	}
 	
 	//글삭제
+	@RequestMapping(value = "delete.iu", method = RequestMethod.GET)
 	public String setDelete(BoardDTO boardDTO) throws Exception {
 		int result = noticeService.setDelete(boardDTO);
 		return "redirect:list.iu";

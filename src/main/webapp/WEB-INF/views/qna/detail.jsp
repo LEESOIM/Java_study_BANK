@@ -11,11 +11,10 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 	<section class="container-fluid col-lg-7 mt-5">
-	<table class="table table-striped mt-3 mb-3">
+	<table class="table table-striped mt-3 mb-5">
 		<tr>
 			<th>글번호</th>
 			<th>글제목</th>
-			<th>글내용</th>
 			<th>작성자</th>
 			<th>작성일</th>
 			<th>조회수</th>
@@ -23,15 +22,20 @@
 		<tr>
 			<td>${requestScope.boardDTO.getNum()}</td>
 			<td>${requestScope.boardDTO.title}</td>
-			<td>${requestScope.boardDTO.contents}</td>
 			<td>${requestScope.boardDTO.writer}</td>
 			<td>${requestScope.boardDTO.regDate}</td>
 			<td>${requestScope.boardDTO.hit}</td>
 		</tr>
 	</table>
-	<a class="btn btn-primary" href="update.iu?num=${boardDTO.num}">글수정</a>
-	<a class="btn btn-primary" href="delete.iu?num=${boardDTO.num}">글삭제</a>
+	<textarea class="form-control" name="contents" rows="10">${boardDTO.contents }</textarea>
+
+	<div class="mt-4">
+	<c:if test="${sessionScope.success.userName eq requestScope.boardDTO.writer}">
+		<a class="btn btn-primary" href="./update.iu?num=${boardDTO.num}">글수정</a>
+		<a class="btn btn-primary" href="./delete.iu?num=${boardDTO.num}">글삭제</a>
+	</c:if>
 	<a class="btn btn-primary" href="./list.iu">글목록</a>
+	</div>
 	</section>
 
 <c:import url="../template/footer.jsp"></c:import>
