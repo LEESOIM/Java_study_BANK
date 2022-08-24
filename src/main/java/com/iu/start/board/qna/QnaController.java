@@ -4,8 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.start.board.impl.BoardDTO;
@@ -16,13 +19,18 @@ public class QnaController {
 	
 	@Autowired
 	private QnaService qnaService;
+	@ModelAttribute("board")
+	
+	public String getBoard() {
+		return "QnA";
+	}
 	
 	@RequestMapping(value = "list.iu", method = RequestMethod.GET)
-	public ModelAndView getList() throws Exception {
+	public ModelAndView getList(@RequestParam(defaultValue = "1")Long page) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<BoardDTO> ar = qnaService.getList();
+		List<BoardDTO> ar = qnaService.getList(page);
 		mv.addObject("list", ar);
-		mv.setViewName("qna/list");
+		mv.setViewName("board/list");
 		return mv;
 	}
 	
@@ -31,17 +39,17 @@ public class QnaController {
 		ModelAndView mv = new ModelAndView();
 		boardDTO = qnaService.getDetail(boardDTO);
 		mv.addObject("boardDTO", boardDTO);
-		mv.setViewName("qna/detail");
+		mv.setViewName("board/detail");
 		return mv;
 	}
 	
 	@RequestMapping(value = "add.iu", method = RequestMethod.GET)
 	public String setAdd() throws Exception {
-		return "qna/add";
+		return "board/add";
 	}
 	
 	@RequestMapping(value = "add.iu", method = RequestMethod.POST)
-	public String setAdd(BoardDTO boardDTO) throws Exception {
+	public String setAdd(BoardDTO boardDTO, Model model) throws Exception {
 		int result = qnaService.setAdd(boardDTO);
 		return "redirect:list.iu";
 	}
@@ -50,7 +58,7 @@ public class QnaController {
 	public ModelAndView setUpdate(BoardDTO boardDTO, ModelAndView mv) throws Exception {
 		boardDTO = qnaService.getDetail(boardDTO);
 		mv.addObject("boardDTO", boardDTO);
-		mv.setViewName("qna/update");
+		mv.setViewName("board/update");
 		return mv;
 	}
 	

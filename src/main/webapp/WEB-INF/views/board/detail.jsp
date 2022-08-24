@@ -11,6 +11,7 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 	<section class="container-fluid col-lg-7 mt-5">
+	<h1 class="mb-5 fw-normal text-center">${requestScope.board} </h1>
 	<table class="table table-striped mt-3 mb-5">
 		<tr>
 			<th>글번호</th>
@@ -27,7 +28,7 @@
 			<td>${requestScope.boardDTO.hit}</td>
 		</tr>
 	</table>
-	<textarea class="form-control" name="contents" rows="10">${boardDTO.contents }</textarea>
+	<textarea class="form-control" name="contents" rows="13" readonly="readonly">${boardDTO.contents }</textarea>
 
 	<div class="mt-4">
 	<c:if test="${sessionScope.success.userName eq requestScope.boardDTO.writer}">

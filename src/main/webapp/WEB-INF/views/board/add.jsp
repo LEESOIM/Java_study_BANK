@@ -10,7 +10,7 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 <section class="container-fluid col-lg-5 mt-5">
-	<h1 class="mb-5 fw-normal text-center">글쓰기</h1>
+	<h1 class="mb-5 fw-normal text-center">${requestScope.board }</h1>
 	
 	<form action="./add.iu" method="post">
 	<div class="mb-3">
