@@ -6,13 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+	crossorigin="anonymous">
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
 	<section class="container-fluid col-lg-7 mt-5">
 		<h1 class="mb-5 fw-normal text-center">${requestScope.board}</h1>
-		<table class="table table-striped mt-3 mb-3">
+		<table class="table table-striped mt-3 mb-5">
 			<thead>
 				<tr>
 					<th>글번호</th>
@@ -34,9 +38,25 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<c:if test="${not empty sessionScope.success}">
+		<nav aria-label="Page navigation example" class="text-align: center"  >
+			<ul class="pagination" style="justify-content: center">
+			<li class="page-item">
+				<a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
+				
+				<c:forEach begin="${requestScope.pager.startNum }" end="${requestScope.pager.lastNum }" var="i">
+					<li class="page-item"><a class="page-link" href="list.iu?page=${pageScope.i }">${pageScope.i }</a></li>
+				</c:forEach>
+				
+				<li class="page-item"><a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+				</a></li>
+			</ul>
+			
+		</nav>
+
+			<c:if test="${not empty sessionScope.success}">
 			<a class="btn btn-primary" href="./add.iu">글쓰기</a>
-		</c:if>
+			</c:if>
+		
 	</section>
 	<c:import url="../template/footer.jsp"></c:import>
 	<script

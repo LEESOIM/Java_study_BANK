@@ -8,10 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.start.board.impl.BoardDTO;
+import com.iu.start.util.Pager;
 
 @Controller
 @RequestMapping("/notice/*")
@@ -27,12 +27,12 @@ public class NoticeController {
 	
 	//글목록
 	@RequestMapping(value = "list.iu", method = RequestMethod.GET)
-	public ModelAndView getList(@RequestParam(defaultValue = "1") Long page) throws Exception {
+	public ModelAndView getList(Pager pager) throws Exception {
 		ModelAndView mv = new ModelAndView(); //jsp로 보내는 방법 1)Model 2)ModelAndView
-		System.out.println("Page : "+page);
-		List<BoardDTO> ar = noticeService.getList(page);
-		mv.addObject("list", ar); //데이터를 list라는 이름으로 저장한다
-		mv.setViewName("board/list"); //데이터를 이동할 경로
+		List<BoardDTO> ar = noticeService.getList(pager);
+		mv.addObject("list", ar); //데이터를 "list"라는 이름으로 저장한다
+		mv.addObject("pager", pager); //주소값을 "pager"라는 이름으로 저장한다
+		mv.setViewName("board/list"); //데이터들을 이동할 경로
 		return mv;
 	}
 	

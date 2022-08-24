@@ -16,13 +16,36 @@ public class QnaDAOTest extends MyAbstractTest {
 	@Autowired
 	private QnaDAO qnaDAO;
 	
-	@Test
-	public void getListTest() throws Exception {
-		List<BoardDTO> ar = qnaDAO.getList();
-		assertEquals(2, ar.size());
+//	@Test
+//	public void getListTest() throws Exception {
+//		List<BoardDTO> ar = qnaDAO.getList();
+//		assertEquals(1, ar.size());
+//	}
+	
+//	@Test
+	public void setAddTest() throws Exception {
+		
+		for(int i=0; i<100; i++) {
+			QnaDTO qnaDTO = new QnaDTO();
+			qnaDTO.setTitle("제목Title "+i);
+			qnaDTO.setContents("내용Contents "+i);
+			qnaDTO.setWriter("ㅇㅅㅇ");
+			int result = qnaDAO.setAdd(qnaDTO);
+			
+			if(i%10==0) {
+				Thread.sleep(500); //10번 하고 0.5초 쉬었다가 일해라
+			}
+		}
+		System.out.println("Finish");
 	}
 	
 	@Test
+	public void getCountTest() throws Exception {
+		long count = qnaDAO.getCount();
+		assertEquals(100L, count);
+	}
+	
+//	@Test
 	public void getDetailTest() throws Exception {
 		BoardDTO boardDTO = new BoardDTO();
 		boardDTO.setNum(61L);
@@ -30,15 +53,6 @@ public class QnaDAOTest extends MyAbstractTest {
 		assertNotNull(boardDTO);
 	}
 	
-	@Test
-	public void setAddTest() throws Exception {
-		QnaDTO qnaDTO = new QnaDTO();
-		qnaDTO.setTitle("qna제목");
-		qnaDTO.setContents("qna내용");
-		qnaDTO.setWriter("qna작성자");
-		int result = qnaDAO.setAdd(qnaDTO);
-		assertEquals(1, result);
-	}
 	
 //	@Test
 	public void setUpdateTest() throws Exception {

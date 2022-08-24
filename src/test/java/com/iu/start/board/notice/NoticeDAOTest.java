@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.iu.start.MyAbstractTest;
 import com.iu.start.board.impl.BoardDTO;
 
-
 public class NoticeDAOTest extends MyAbstractTest {
 
 	@Autowired
@@ -42,6 +41,12 @@ public class NoticeDAOTest extends MyAbstractTest {
 	}
 	
 	@Test
+	public void getCountTest() throws Exception {
+		long count = noticeDAO.getCount();
+		assertEquals(100L, count);
+	}
+	
+	@Test
 	public void getDetailTest() throws Exception {
 		BoardDTO boardDTO = new BoardDTO();
 		boardDTO.setNum(305L);
@@ -65,12 +70,6 @@ public class NoticeDAOTest extends MyAbstractTest {
 		noticeDTO.setNum(41L);
 		int result = noticeDAO.setDelete(noticeDTO);
 		assertEquals(1, result);
-	}
-	
-	@Test
-	public void getCountTest() throws Exception {
-		long count = noticeDAO.getCount();
-		assertEquals(100L, count);
 	}
 	
 }

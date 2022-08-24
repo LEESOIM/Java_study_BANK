@@ -5,16 +5,31 @@
 
 <mapper namespace="com.iu.start.board.notice.NoticeDAO">
 
-	<select id="getList" resultType="NoticeDTO" parameterType="java.util.Map">
+<!-- <select id="getList" resultType="NoticeDTO" parameterType="java.util.Map">
 		SELECT * FROM   
 		(
-			SELECT ROWNUM R, N.* FROM                	<!-- 2) R열컬럼 생성, N테이블의 모든데이터 출력 --> 
-			(SELECT * FROM NOTICE ORDER BY NUM DESC) N	<!-- 1) 정렬한 N테이블 생성 -->
+			SELECT ROWNUM R, N.* FROM                	2) 열컬럼 생성, N테이블의 모든 컬럼 출력 
+			(SELECT * FROM NOTICE ORDER BY NUM DESC) N	1) N 테이블 정렬 먼저
 		)
-		WHERE R BETWEEN #{startRow} AND #{lastRow}		<!-- 3) 1부터만 출력가능한 ROWNUM을 sartRow부터 10개씩 가능케한다 -->
+		WHERE R BETWEEN #{startRow} AND #{lastRow}		3) 1부터만 출력 가능한 ROWNUM을 startRow부터 lastRow까지의 갯수를 가능케한다
+	</select> -->
+	
+	
+	<select id="getList" resultType="NoticeDTO" parameterType="Pager">
+		SELECT * FROM   
+		(
+			SELECT ROWNUM R, N.* FROM                	
+			(SELECT * FROM NOTICE ORDER BY NUM DESC) N	
+		)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}		
 	</select>
 	
-	<select id="getDetail" parameterType="BoardDTO" resultType="NoticeDTO">
+	<select id="getCount" resultType="java.lang.Long">
+		SELECT COUNT(NUM) FROM NOTICE
+	</select>
+	
+	
+	<select id="getDetail" resultType="NoticeDTO" parameterType="BoardDTO" >
 		SELECT * FROM NOTICE WHERE NUM=#{num}
 	</select>
 	
@@ -30,8 +45,4 @@
 		DELETE NOTICE WHERE NUM=#{num}
 	</delete>
 	
-	<select id="getCount" resultType="java.lang.Long">
-		SELECT COUNT(NUM) FROM NOTICE
-	</select>
-
 </mapper>
