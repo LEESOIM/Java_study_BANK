@@ -40,17 +40,25 @@
 		</table>
 		<nav aria-label="Page navigation example" class="text-align: center"  >
 			<ul class="pagination" style="justify-content: center">
-			<li class="page-item">
-				<a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
-				
+			<c:if test="${pager.pre }">
+			<li class="page-item"><a class="page-link" href="list.iu?page=${pager.startNum-1 }" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
+			</c:if>
+			
 				<c:forEach begin="${requestScope.pager.startNum }" end="${requestScope.pager.lastNum }" var="i">
 					<li class="page-item"><a class="page-link" href="list.iu?page=${pageScope.i }">${pageScope.i }</a></li>
 				</c:forEach>
 				
-				<li class="page-item"><a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-				</a></li>
+<%-- 		<c:choose>
+				<c:when test="${pager.next }"> <!-- if -->
+					<li class="page-item ">
+				</c:when> 
+				<c:otherwise>
+					<li class="page-item disabled"> <!-- 그외 나머지 -->
+				</c:otherwise> 
+			</c:choose> --%>
+
+			<li class="page-item ${pager.next?'':'disabled' }"><a class="page-link" href="list.iu?page=${pager.lastNum+1 }" aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>
 			</ul>
-			
 		</nav>
 
 			<c:if test="${not empty sessionScope.success}">

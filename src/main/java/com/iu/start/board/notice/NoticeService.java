@@ -18,6 +18,11 @@ public class NoticeService implements BoardService {
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
 		
+		Long totalCount = noticeDAO.getCount();
+		pager.getNum(totalCount);
+		
+		pager.getRowNum();
+		
 //		//페이지에 글 10개씩 출력 기준
 //		//page			sartRow			lastRow
 //		//1				1				10
@@ -30,7 +35,6 @@ public class NoticeService implements BoardService {
 //		Map<String, Long> map = new HashMap<String, Long>();
 //		map.put("startRow", startRow);
 //		map.put("lastRow", lastRow);
-		pager.getRowNum();
 		
 		
 //		/**
@@ -43,10 +47,6 @@ public class NoticeService implements BoardService {
 //		if(totalCount%perPage != 0) {
 //			totalPage = totalPage+1;
 //		}
-		Long totalCount = noticeDAO.getCount();
-		pager.getNum(totalCount);
-		
-		
 //		/**
 //		* 3. totalBlock 갯수 구하기
 //		* Block	   : 
