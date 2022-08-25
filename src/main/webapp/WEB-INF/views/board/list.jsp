@@ -16,7 +16,7 @@
 	<c:import url="../template/header.jsp"></c:import>
 	<section class="container-fluid col-lg-7 mt-5">
 		<h1 class="mb-5 fw-normal text-center">${requestScope.board}</h1>
-		<table class="table table-striped mt-3 mb-5">
+		<table class="table table-striped mt-3 mb-4">
 			<thead>
 				<tr>
 					<th>글번호</th>
@@ -27,10 +27,16 @@
 				</tr>
 			</thead>
 			<tbody>
+
 				<c:forEach items="${requestScope.list }" var="dto">
 					<tr>
 						<td>${pageScope.dto.num }</td>
-						<td><a href="./detail.iu?num=${pageScope.dto.num }">${pageScope.dto.title }</a></td>
+						<td><c:catch>
+								<!-- for(int i=0; i'<='end; i++) -->
+								<c:forEach begin="1" end="${dto.depth }">
+									&ensp;
+								</c:forEach>
+							</c:catch> <a href="./detail.iu?num=${pageScope.dto.num }">${pageScope.dto.title }</a></td>
 						<td>${dto.writer }</td>
 						<td>${dto.regDate }</td>
 						<td>${dto.hit }</td>
@@ -38,33 +44,59 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<nav aria-label="Page navigation example" class="text-align: center"  >
+		<nav aria-label="Page navigation example" class="text-align: center">
 			<ul class="pagination" style="justify-content: center">
-			<c:if test="${pager.pre }">
-			<li class="page-item"><a class="page-link" href="list.iu?page=${pager.startNum-1 }" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
-			</c:if>
-			
-				<c:forEach begin="${requestScope.pager.startNum }" end="${requestScope.pager.lastNum }" var="i">
-					<li class="page-item"><a class="page-link" href="list.iu?page=${pageScope.i }">${pageScope.i }</a></li>
+				<c:if test="${pager.pre }">
+					<li class="page-item"><a class="page-link"
+						href="list.iu?page=${pager.startNum-1 }&kind=${pager.kind }&search=${pager.search}"
+						aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
+				</c:if>
+
+				<c:forEach begin="${requestScope.pager.startNum }"
+					end="${requestScope.pager.lastNum }" var="i">
+					<li class="page-item"><a class="page-link"
+						href="list.iu?page=${pageScope.i }&kind=${pager.kind }&search=${pager.search}">${pageScope.i }</a></li>
 				</c:forEach>
-				
-<%-- 		<c:choose>
+
+				<%-- 		<c:choose>
 				<c:when test="${pager.next }"> <!-- if -->
 					<li class="page-item ">
 				</c:when> 
 				<c:otherwise>
-					<li class="page-item disabled"> <!-- 그외 나머지 -->
+					<li class="page-item disabled"> <!-- 그외 나머지 else-->
 				</c:otherwise> 
 			</c:choose> --%>
 
-			<li class="page-item ${pager.next?'':'disabled' }"><a class="page-link" href="list.iu?page=${pager.lastNum+1 }" aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>
+				<li class="page-item ${pager.next?'':'disabled' }"><a
+					class="page-link"
+					href="list.iu?page=${pager.lastNum+1 }&kind=${pager.kind }&search=${pager.search}"
+					aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>
+
 			</ul>
+			
 		</nav>
 
+
+		<form action="list.iu" class="row gy-2 gx-3 align-items-center" style="justify-content: center">
+			<div class="col-auto">
+				<select name="kind" class="form-select">
+					<option value="title">제목</option>
+					<option value="contents">내용</option>
+					<option value="writer">작성자</option>
+				</select>
+			</div>
+			<div class="col-auto">
+				<input type="text" class="form-control" id="autoSizingInput"
+					name="search">
+			</div>
+			<div class="col-auto">
+				<button type="submit" class="btn btn-primary" id="search">검색</button>
+			</div>
+		</form>
 			<c:if test="${not empty sessionScope.success}">
-			<a class="btn btn-primary" href="./add.iu">글쓰기</a>
+					<a class="btn btn-primary" href="./add.iu">글쓰기</a>
 			</c:if>
-		
+
 	</section>
 	<c:import url="../template/footer.jsp"></c:import>
 	<script

@@ -14,9 +14,10 @@
 <body>
 	<c:import url="../template/header.jsp"></c:import>
 	<section class="container-fluid col-lg-5 mt-5">
-		<h1 class="mb-5 fw-normal text-center">${requestScope.board }</h1>
+		<h1 class="mb-5 fw-normal text-center">${requestScope.board } Reply</h1>
 
-		<form action="./add.iu" method="post">
+		<form action="./reply.iu" method="post">
+		<input type="hidden" name="num" value="${boardDTO.num }">
 			<div class="mb-3">
 				<label for="exampleFormControlInput1" class="form-label">제목</label>
 				<input type="text" name="title" class="form-control"
@@ -33,9 +34,7 @@
 					id="exampleFormControlInput1" readonly="readonly"
 					value="${sessionScope.success.userName }">
 			</div>
-			<div style="text-align: right;">
-				<button class="btn btn-primary" href="./add.iu">글쓰기</button>
-			</div>
+			<button class="btn btn-primary" href="./add.iu">글쓰기</button>
 		</form>
 	</section>
 	<c:import url="../template/footer.jsp"></c:import>

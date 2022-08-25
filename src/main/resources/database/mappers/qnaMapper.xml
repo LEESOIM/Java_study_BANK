@@ -5,25 +5,51 @@
   
 <mapper namespace="com.iu.start.board.qna.QnaDAO">
 
-	<select id="getList" resultType="qnaDTO" parameterType="Pager">
+	<insert id="setReplyAdd" parameterType="QnaDTO">
+		<selectKey keyProperty="num" order="BEFORE" resultType="java.lang.Long">
+			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO QNA VALUES(#{num},#{title},#{contents},#{writer},SYSDATE,0,#{ref},#{step},#{depth})
+	</insert>
+
+	<update id="setStepUpdate" parameterType="QnaDTO">
+		UPDATE QNA SET STEP=STEP+1 WHERE REF=#{ref} AND STEP>#{step}
+	</update>
+
+	<sql id="search">
+		WHERE
+			<choose>
+				<when test="kind=='contents'">CONTENTS</when>
+				<when test="kind=='writer'">WRITER</when>
+				<otherwise>TITLE</otherwise>
+			</choose>
+		LIKE '%'||#{search}||'%'
+	</sql>
+	
+	<select id="getList" resultType="QnaDTO" parameterType="Pager">
 		SELECT * FROM 
 		(
 			SELECT ROWNUM R, Q.* FROM
-			(SELECT * FROM QNA ORDER BY NUM DESC) Q
+			(SELECT * FROM QNA 
+				<include refid="search"></include>
+			ORDER BY REF DESC, STEP ASC) Q
 		)
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
 	</select>
 	
 	<select id="getCount" resultType="java.lang.Long">
-		SELECT COUNT(NUM) FROM QNA
+		SELECT COUNT(NUM) FROM QNA <include refid="search"></include>
 	</select>
 	
-	<select id="getDetail" resultType="qnaDTO" parameterType="BoardDTO" >
+	<select id="getDetail" resultType="QnaDTO" parameterType="BoardDTO" >
 		SELECT * FROM QNA WHERE NUM=#{num}
 	</select>
 	
 	<insert id="setAdd" parameterType="BoardDTO">
-		INSERT INTO QNA VALUES(BOARD_SEQ.NEXTVAL,#{title},#{contents},#{writer},SYSDATE,0,0,0,0)
+		<selectKey keyProperty="num" order="BEFORE" resultType="java.lang.Long">
+			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO QNA VALUES(#{num},#{title},#{contents},#{writer},SYSDATE,0,#{num},0,0)
 	</insert>
 	
 	<update id="setUpdate" parameterType="BoardDTO">

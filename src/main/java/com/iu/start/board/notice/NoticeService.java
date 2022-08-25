@@ -18,10 +18,12 @@ public class NoticeService implements BoardService {
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
 		
-		Long totalCount = noticeDAO.getCount();
+		Long totalCount = noticeDAO.getCount(pager);
 		pager.getNum(totalCount);
 		
 		pager.getRowNum();
+		
+		return noticeDAO.getList(pager);
 		
 //		//페이지에 글 10개씩 출력 기준
 //		//page			sartRow			lastRow
@@ -80,8 +82,6 @@ public class NoticeService implements BoardService {
 //		**/		
 //		Long startNum = (curBlock-1)*perBlock+1; 
 //		Long lastNum = curBlock*perBlock;
-	
-		return noticeDAO.getList(pager);
 	}
 
 	

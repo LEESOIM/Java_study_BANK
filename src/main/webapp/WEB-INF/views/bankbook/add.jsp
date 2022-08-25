@@ -27,7 +27,9 @@
 	  <label for="exampleFormControlTextarea1" class="form-label">상세설명</label>
 	  <textarea class="form-control" name="bookContents" id="exampleFormControlTextarea1" rows="3"></textarea>
 	</div>
+	<div style="text-align: right;">
 	<button class="btn btn-primary" type="submit">상품등록</button>
+	</div>
 	</form>
 	</section>
 

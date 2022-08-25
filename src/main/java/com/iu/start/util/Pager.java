@@ -23,6 +23,12 @@ public class Pager {
 	//다음블럭의 유무(다음블럭이 있으면 true, 없으면 false)
 	private boolean next;
 	
+	//검색 컬럼의 종류
+	private String kind;
+	//검색어
+	private String search;
+	
+	
 	public Pager() {
 		this.perPage=10L;
 		this.perBlock=5L;
@@ -132,7 +138,6 @@ public class Pager {
 		this.lastRow = lastRow;
 	}
 
-
 	public boolean isPre() {
 		return pre;
 	}
@@ -144,5 +149,21 @@ public class Pager {
 	}
 	public void setNext(boolean next) {
 		this.next = next;
+	}
+
+	public String getKind() {
+		return kind;
+	}
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+	public String getSearch() {
+		if(this.search==null) {
+			this.search="";
+		}
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
 	}
 }
