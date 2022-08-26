@@ -1,9 +1,15 @@
 package com.iu.start.board.notice;
 
+import java.io.File;
+import java.util.Calendar;
 import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.start.board.impl.BoardDTO;
 import com.iu.start.board.impl.BoardService;
@@ -14,6 +20,8 @@ public class NoticeService implements BoardService {
 	
 	@Autowired
 	private NoticeDAO noticeDAO;
+	@Autowired
+	private ServletContext servletContext;
 	
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
@@ -91,8 +99,38 @@ public class NoticeService implements BoardService {
 	}
 
 	@Override
-	public int setAdd(BoardDTO boardDTO) throws Exception {
-		return noticeDAO.setAdd(boardDTO);
+	public int setAdd(BoardDTO boardDTO, MultipartFile [] files) throws Exception {
+		
+		//저장할 폴더의 실제 경로 반환(OS 기준)
+		String realPath = servletContext.getRealPath("resources/upload/notice");
+		System.out.println("RealPath : "+realPath);
+		
+		//저장할 폴더의 정보를 가지는 자바 객체 생성
+		File file = new File(realPath);
+		if(!file.exists()) {
+			file.mkdirs();
+		}
+		
+		
+		for(MultipartFile mf:files) {
+			if(mf.isEmpty()) {
+				continue; //비어있으면 다음꺼 실행
+			}
+			
+			//저장하는 코드
+			String fileName = UUID.randomUUID().toString();
+			System.out.println("fileName : "+fileName);
+			
+			Calendar ca = Calendar.getInstance();
+			Long time = ca.getTimeInMillis();
+			
+		}
+			
+			
+
+		
+		
+		return 0; //noticeDAO.setAdd(boardDTO);
 	}
 
 	@Override
@@ -104,5 +142,6 @@ public class NoticeService implements BoardService {
 	public int setDelete(BoardDTO boardDTO) throws Exception {
 		return noticeDAO.setDelete(boardDTO);
 	}
+
 	
 }

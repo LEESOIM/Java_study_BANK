@@ -12,7 +12,7 @@
 <c:import url="../template/header.jsp"></c:import>
 
 	 <section class="container-fluid col-lg-2 mt-5">
-	 <form action="./join.iu" method="post">
+	 <form action="./join.iu" method="post" enctype="multipart/form-data">
 	 	<div class="row">
 			<main class="form-signin w-80 m-auto">
 				  <h1 class="mb-5 fw-normal text-center">회원가입</h1>
@@ -26,17 +26,19 @@
 					<label for="floatingPassword">Password</label>
 				  </div>
 				  <div class="form-floating mb-3">
-					<input type="text" class="form-control" name="name" id="floatingPassword" placeholder="Password">
-					<label for="floatingPassword">name</label>
+					<input type="text" class="form-control" name="name" id="floatingName" placeholder="Name">
+					<label for="floatingName">name</label>
 				  </div>
 				  <div class="form-floating mb-3">
-					<input type="text" class="form-control" name="email" id="floatingPassword" placeholder="Password">
-					<label for="floatingPassword">email</label>
+					<input type="text" class="form-control" name="email" id="floatingEmail" placeholder="Email">
+					<label for="floatingEmail">email</label>
 				  </div>
 				  <div class="form-floating mb-3">
-					<input type="text" class="form-control" name="phone" id="floatingPassword" placeholder="Password">
-					<label for="floatingPassword">phone</label>
+					<input type="text" class="form-control" name="phone" id="floatingPhone" placeholder="Phone">
+					<label for="floatingPhone">phone</label>
 				  </div>
+				  
+					<input type="file" class="form-control" name="photo" id="filse">
 
 				  <button class="w-100 btn btn-lg btn-primary mt-4" type="submit">가입하기</button>
 			  </main>

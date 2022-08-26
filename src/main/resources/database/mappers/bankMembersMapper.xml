@@ -4,7 +4,11 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.iu.start.bankmembers.BankMembersDAO">
-
+	
+	<insert id="setAddFile" parameterType="MembersFileDTO">
+		INSERT INTO MEMBERFILE VALUES(FILE_SEQ.NEXTVAL,#{fileName},#{oriName},#{userName})
+	</insert>
+	
 	<select id="getLogin" parameterType="BankMembersDTO" resultType="BankMembersDTO">
 		SELECT USERNAME, NAME FROM BANKMEMBERS WHERE USERNAME=#{userName} AND PASSWORD=#{password}
 	</select>
@@ -22,12 +26,18 @@
 	</select>
  -->	
 	<select id="getMyPage" parameterType="BankMembersDTO" resultMap="getMyPageResult">
-		SELECT USERNAME, M.NAME, M.EMAIL, M.PHONE, A.ACCOUNTNUM, B.BOOKNAME, A.ACCOUNTDATE
+		SELECT USERNAME, M.NAME, M.EMAIL, M.PHONE, FILENUM, FILENAME, A.ACCOUNTNUM, B.BOOKNAME, A.ACCOUNTDATE
 		FROM BANKMEMBERS M
-		INNER JOIN BANKACCOUNT A
+		
+		LEFT JOIN MEMBERFILE F
 		USING (USERNAME)
-		INNER JOIN BANKBOOK B
+		
+		LEFT JOIN BANKACCOUNT A
+		USING (USERNAME)
+		
+		LEFT JOIN BANKBOOK B
 		USING (BOOKNUM)
+		
 		WHERE USERNAME=#{userName}
 	</select>
 	
@@ -37,10 +47,16 @@
 		<result column="EMAIL" property="email"/>
 		<result column="PHONE" property="phone"/>
 
+		<association property="membersFileDTO" javaType="MembersFileDTO">
+			<id column="FILENUM" property="fileNum"/>
+			<result column="FILENAME" property="fileName"/>
+		</association>
+
 				<!-- property="멤버변수" javaType="데이터타입" ofType="제네릭" -->
 		<collection property="bankAccountDTOs" javaType="List" ofType="BankAccountDTO"> <!-- collection 1:N관계일때 -->
 			<id column="ACCOUNTNUM" property="accountNum"/>
 			<result column="ACCOUNTDATE" property="accountDate"/>
+			
 			<association property="bankBookDTO" javaType="BankBookDTO">
 				<result column="BOOKNAME" property="bookName"/>
 			</association>
