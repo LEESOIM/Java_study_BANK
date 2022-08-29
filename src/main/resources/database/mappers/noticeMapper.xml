@@ -5,8 +5,8 @@
 
 <mapper namespace="com.iu.start.board.notice.NoticeDAO">
 
-	<insert id="setADDfile" parameterType="BoardFileDTO">
-		INSERT INTO NOTICEFILE VALUES(FILE_SEQ.NEXTVAL, #{num}, #{filename}, #{oriName})
+	<insert id="setAddFile" parameterType="BoardFileDTO">
+		INSERT INTO NOTICEFILE VALUES(FILE_SEQ.NEXTVAL, #{num}, #{fileName}, #{oriName})
 	</insert>
 
 <!-- <select id="getList" resultType="NoticeDTO" parameterType="java.util.Map">
@@ -43,9 +43,28 @@
 		SELECT COUNT(NUM) FROM NOTICE <include refid="search"></include>
 	</select>
 	
-	<select id="getDetail" resultType="NoticeDTO" parameterType="BoardDTO" >
-		SELECT * FROM NOTICE WHERE NUM=#{num}
+	<select id="getDetail" resultType="NoticeDTO" parameterType="BoardDTO" resultMap="getDetailResult" >
+		SELECT *
+		FROM NOTICE N
+		LEFT JOIN
+		NOTICEFILE NF
+		USING(NUM)
+		WHERE NUM=#{num}
 	</select>
+	
+	<resultMap type="NoticeDTO" id="getDetailResult">
+		<id column="NUM" property="num"/> <!-- PK -->
+		<result column="TITLE" property="title"/>
+		<result column="CONTENTS" property="contents"/>
+		<result column="WRITER" property="writer"/>
+		<result column="REGDATE" property="regDate"/>
+		<result column="HIT" property="hit"/>
+		<collection property="boardFileDTOs" javaType="List" ofType="BoardFileDTO">
+			<id column="FILENUM" property="fileNum"/> <!-- BoardFileDTO의 num -->
+			<result column="FILENAME" property="fileName"/>
+			<result column="ORINAME" property="oriName"/>
+		</collection>
+	</resultMap>
 	
 	<insert id="setAdd" parameterType="BoardDTO">
 		<selectKey order="BEFORE" keyProperty="num" resultType="Long">

@@ -14,26 +14,27 @@ import org.springframework.web.multipart.MultipartFile;
 import com.iu.start.board.impl.BoardDTO;
 import com.iu.start.board.impl.BoardFileDTO;
 import com.iu.start.board.impl.BoardService;
+import com.iu.start.util.FileManager;
 import com.iu.start.util.Pager;
 
 @Service
 public class NoticeService implements BoardService {
-	
+
 	@Autowired
 	private NoticeDAO noticeDAO;
 	@Autowired
-	private ServletContext servletContext;
-	
+	private FileManager fileManager;
+
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
-		
+
 		Long totalCount = noticeDAO.getCount(pager);
 		pager.getNum(totalCount);
-		
+
 		pager.getRowNum();
-		
+
 		return noticeDAO.getList(pager);
-		
+
 //		//페이지에 글 10개씩 출력 기준
 //		//page			sartRow			lastRow
 //		//1				1				10
@@ -46,8 +47,7 @@ public class NoticeService implements BoardService {
 //		Map<String, Long> map = new HashMap<String, Long>();
 //		map.put("startRow", startRow);
 //		map.put("lastRow", lastRow);
-		
-		
+
 //		/**
 //		* JSP에 페이지 번호 출력 1 ~ ?
 //		* 1. 글의 총갯수
@@ -68,8 +68,7 @@ public class NoticeService implements BoardService {
 //		if(totalPage%perBlock != 0) {
 //			totalBlock++;
 //		}
-		
-		
+
 //		/**
 //		* 4. page로 현재 Block 번호 찾기
 //		* page		curBlock
@@ -93,54 +92,70 @@ public class NoticeService implements BoardService {
 //		Long lastNum = curBlock*perBlock;
 	}
 
-	
 	@Override
 	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception {
 		return noticeDAO.getDetail(boardDTO);
 	}
 
+	
 	@Override
-	public int setAdd(BoardDTO boardDTO, MultipartFile [] files) throws Exception {
-		
+	public int setAdd(BoardDTO boardDTO, MultipartFile[] files, ServletContext servletContext) throws Exception {
+
 		int result = noticeDAO.setAdd(boardDTO);
-		
-		//저장할 폴더의 실제 경로 반환(OS 기준)
-		String realPath = servletContext.getRealPath("resources/upload/notice");
-		System.out.println("RealPath : "+realPath);
-		
-		//저장할 폴더의 정보를 가지는 자바 객체 생성
-		File file = new File(realPath);
-		if(!file.exists()) {
-			file.mkdirs();
-		}
-		
-		
-		for(MultipartFile mf:files) {
-			if(mf.isEmpty()) {
-				continue; //비어있으면 다음꺼 실행
+		String path = "resources/upload/notice";
+
+		for (MultipartFile multipartFile : files) {
+			if (multipartFile.isEmpty()) {
+				continue;
 			}
-			
-			//file = new File(realPath);
-			
-			//저장하는 코드
-			String fileName = UUID.randomUUID().toString();
-			fileName = fileName+"_"+mf.getOriginalFilename();
 
-			File dest = new File(file, fileName);//폴더, 파일명
-			mf.transferTo(dest);
-
+			String fileName = fileManager.saveFile(servletContext, path, multipartFile);
 			BoardFileDTO boardFileDTO = new BoardFileDTO();
 			boardFileDTO.setFileName(fileName);
-			boardFileDTO.setOriName(mf.getOriginalFilename());
+			boardFileDTO.setOriName(multipartFile.getOriginalFilename());
+			System.out.println(boardDTO.getNum());
 			boardFileDTO.setNum(boardDTO.getNum());
 			noticeDAO.setAddFile(boardFileDTO);
-			
 		}
-		
+
 		return result;
+		
+		
+//		//저장할 폴더의 실제 경로 반환(OS 기준)
+//		String realPath = servletContext.getRealPath("resources/upload/notice");
+//		System.out.println("RealPath : "+realPath);
+//		
+//		//저장할 폴더의 정보를 가지는 자바 객체 생성
+//		File file = new File(realPath);
+//		if(!file.exists()) {
+//			file.mkdirs();
+//		}
+//		
+//		
+//		for(MultipartFile mf:files) {
+//			if(mf.isEmpty()) {
+//				continue; //비어있으면 다음꺼 실행
+//			}
+//			
+//			//file = new File(realPath);
+//			
+//			//저장하는 코드
+//			String fileName = UUID.randomUUID().toString();
+//			fileName = fileName+"_"+mf.getOriginalFilename();
+//
+//			File dest = new File(file, fileName);//폴더, 파일명
+//			mf.transferTo(dest);
+//
+//			BoardFileDTO boardFileDTO = new BoardFileDTO();
+//			boardFileDTO.setFileName(fileName);
+//			boardFileDTO.setOriName(mf.getOriginalFilename());
+//			boardFileDTO.setNum(boardDTO.getNum());
+//			noticeDAO.setAddFile(boardFileDTO);
+//			
+//		}
+		
 	}
 
-	
 	@Override
 	public int setUpdate(BoardDTO boardDTO) throws Exception {
 		return noticeDAO.setUpdate(boardDTO);
@@ -151,5 +166,4 @@ public class NoticeService implements BoardService {
 		return noticeDAO.setDelete(boardDTO);
 	}
 
-	
 }

@@ -16,12 +16,13 @@ public class FileManager {
 	private ServletContext servletContext;
 	
 	//save				//2)매개변수 선언
-	public void saveFile(ServletContext servletContext, String path, MultipartFile multipartFile) throws Exception {
-		//1.실제 경로
+	public String saveFile(ServletContext servletContext, String path, MultipartFile multipartFile) throws Exception {
+		//1.저장할 폴더의 실제 경로 반환(OS 기준)
 		String realPath = servletContext.getRealPath(path);
-		System.out.println(realPath);
+		System.out.println("RealPath : "+realPath);
 		
-		//2.폴더(directory) 체크
+		//2.폴더(directory) 체크 
+		//저장할 폴더의 정보를 가지는 자바 객체 생성
 		File file = new File(realPath);
 		if(!file.exists()) {
 			file.mkdirs();
@@ -34,5 +35,7 @@ public class FileManager {
 		//4.HDD에 저장
 		file = new File(file, fileName);
 		multipartFile.transferTo(file);
+		
+		return fileName;
 	}
 }

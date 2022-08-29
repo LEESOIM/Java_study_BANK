@@ -5,6 +5,11 @@
   
 <mapper namespace="com.iu.start.board.qna.QnaDAO">
 
+	<insert id="setAddFile" parameterType="BoardFileDTO">
+		INSERT INTO QNAFILE VALUES(FILE_SEQ.NEXTVAL, #{num}, #{fileName}, #{oriName})
+	</insert>
+	
+	
 	<insert id="setReplyAdd" parameterType="QnaDTO">
 		<selectKey keyProperty="num" order="BEFORE" resultType="java.lang.Long">
 			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
@@ -41,9 +46,28 @@
 		SELECT COUNT(NUM) FROM QNA <include refid="search"></include>
 	</select>
 	
-	<select id="getDetail" resultType="QnaDTO" parameterType="BoardDTO" >
-		SELECT * FROM QNA WHERE NUM=#{num}
+	<select id="getDetail" resultType="QnaDTO" parameterType="BoardDTO" resultMap="getDetailResult">
+		SELECT *
+		FROM QNA Q
+		LEFT JOIN
+		QNAFILE QF
+		USING(NUM)
+		WHERE NUM=#{num}
 	</select>
+	
+	<resultMap type="QnaDTO" id="getDetailResult">
+		<id column="NUM" property="num"/> <!-- PK -->
+		<result column="TITLE" property="title"/>
+		<result column="CONTENTS" property="contents"/>
+		<result column="WRITER" property="writer"/>
+		<result column="REGDATE" property="regDate"/>
+		<result column="HIT" property="hit"/>
+		<collection property="boardFileDTOs" javaType="List" ofType="BoardFileDTO">
+			<id column="FILENUM" property="fileNum"/> <!-- BoardFileDTO의 num -->
+			<result column="FILENAME" property="fileName"/>
+			<result column="ORINAME" property="oriName"/>
+		</collection>
+	</resultMap>
 	
 	<insert id="setAdd" parameterType="BoardDTO">
 		<selectKey keyProperty="num" order="BEFORE" resultType="java.lang.Long">

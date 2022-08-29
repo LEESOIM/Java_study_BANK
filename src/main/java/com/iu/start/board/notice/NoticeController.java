@@ -2,6 +2,8 @@ package com.iu.start.board.notice;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +25,7 @@ public class NoticeController {
 	
 	@ModelAttribute("board")
 	public String getBoard() {
-		return "Notice";
+		return "notice";
 	}
 	
 	
@@ -55,9 +57,9 @@ public class NoticeController {
 	
 	//글쓰기 Insert
 	@RequestMapping(value = "add.iu", method = RequestMethod.POST)
-	public ModelAndView setAdd(BoardDTO boardDTO, MultipartFile [] files) throws Exception {
+	public ModelAndView setAdd(BoardDTO boardDTO, MultipartFile [] files, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		int result = noticeService.setAdd(boardDTO, files);
+		int result = noticeService.setAdd(boardDTO, files, session.getServletContext());
 		mv.setViewName("redirect:list.iu");
 		return mv;
 		//ModelAndView보단 String으로 redirect해주는게 낫다

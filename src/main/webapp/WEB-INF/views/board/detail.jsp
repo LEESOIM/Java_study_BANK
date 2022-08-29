@@ -32,8 +32,14 @@
 				<td>${requestScope.boardDTO.hit}</td>
 			</tr>
 		</table>
-		<textarea class="form-control" name="contents" rows="13"
-			readonly="readonly">${boardDTO.contents }</textarea>
+		
+		<textarea class="form-control" name="contents" rows="13" readonly="readonly">${boardDTO.contents }</textarea>
+		
+		<div>
+			<c:forEach items="${requestScope.boardDTO.boardFileDTOs }" var="fileDTO">
+				<a href="../resources/upload/${board}/${fileDTO.fileName}">${fileDTO.oriName}</a>				
+			</c:forEach>
+		</div>
 
 		<div class="mt-4" style="text-align: right;">
 			<a href="./reply.iu?num=${boardDTO.num }" class="btn btn-primary">답글쓰기</a>

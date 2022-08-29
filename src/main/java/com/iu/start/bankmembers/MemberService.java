@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.start.bankAccount.BankAccountDAO;
+import com.iu.start.util.FileManager;
 
 @Service
 public class MemberService {
@@ -24,6 +25,8 @@ public class MemberService {
 //	private ServletContext servletContext; //외부와 연결
 //	@Autowired
 //	private BankAccountDAO bankAccountDAO;
+	@Autowired
+	private FileManager fileManager;
 
 	
 	//bankMembers 회원가입

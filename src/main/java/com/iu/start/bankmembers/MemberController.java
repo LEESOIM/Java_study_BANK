@@ -62,9 +62,9 @@ public class MemberController {
 	
 	//	/member/join POST
 	@RequestMapping(value = "join.iu", method = RequestMethod.POST)
-	public String join(BankMembersDTO bankMembersDTO, MultipartFile photo, ServletContext servletContext) throws Exception {
+	public String join(BankMembersDTO bankMembersDTO, MultipartFile photo, HttpSession session) throws Exception {
 		System.out.println("회원가입 성공");
-		int result = memberService.setJoin(bankMembersDTO, photo, servletContext);
+		int result = memberService.setJoin(bankMembersDTO, photo, session.getServletContext());
 		System.out.println(bankMembersDTO.getUserName());
 		System.out.println(bankMembersDTO.getPassword());
 		
