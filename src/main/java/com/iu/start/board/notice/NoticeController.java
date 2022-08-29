@@ -26,6 +26,8 @@ public class NoticeController {
 		return "Notice";
 	}
 	
+	
+	
 	//글목록
 	@RequestMapping(value = "list.iu", method = RequestMethod.GET)
 	public ModelAndView getList(Pager pager) throws Exception {
@@ -55,9 +57,7 @@ public class NoticeController {
 	@RequestMapping(value = "add.iu", method = RequestMethod.POST)
 	public ModelAndView setAdd(BoardDTO boardDTO, MultipartFile [] files) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		//int result = noticeService.setAdd(boardDTO, files);
-		
-		
+		int result = noticeService.setAdd(boardDTO, files);
 		mv.setViewName("redirect:list.iu");
 		return mv;
 		//ModelAndView보단 String으로 redirect해주는게 낫다

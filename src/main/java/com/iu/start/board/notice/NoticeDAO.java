@@ -9,14 +9,21 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.start.board.impl.BoardDAO;
 import com.iu.start.board.impl.BoardDTO;
+import com.iu.start.board.impl.BoardFileDTO;
 import com.iu.start.util.Pager;
 
 @Repository
 public class NoticeDAO implements BoardDAO {
 	
+	
 	@Autowired
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.iu.start.board.notice.NoticeDAO.";
+	
+	@Override
+	public int setAddFile(BoardFileDTO boardFileDTO) throws Exception {
+		return  sqlSession.insert(NAMESPACE+"setAddFile", boardFileDTO);
+	}
 	
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {

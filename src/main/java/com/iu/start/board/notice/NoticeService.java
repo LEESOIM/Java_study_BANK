@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.start.board.impl.BoardDTO;
+import com.iu.start.board.impl.BoardFileDTO;
 import com.iu.start.board.impl.BoardService;
 import com.iu.start.util.Pager;
 
@@ -101,6 +102,8 @@ public class NoticeService implements BoardService {
 	@Override
 	public int setAdd(BoardDTO boardDTO, MultipartFile [] files) throws Exception {
 		
+		int result = noticeDAO.setAdd(boardDTO);
+		
 		//저장할 폴더의 실제 경로 반환(OS 기준)
 		String realPath = servletContext.getRealPath("resources/upload/notice");
 		System.out.println("RealPath : "+realPath);
@@ -117,22 +120,27 @@ public class NoticeService implements BoardService {
 				continue; //비어있으면 다음꺼 실행
 			}
 			
+			//file = new File(realPath);
+			
 			//저장하는 코드
 			String fileName = UUID.randomUUID().toString();
-			System.out.println("fileName : "+fileName);
-			
-			Calendar ca = Calendar.getInstance();
-			Long time = ca.getTimeInMillis();
+			fileName = fileName+"_"+mf.getOriginalFilename();
+
+			File dest = new File(file, fileName);//폴더, 파일명
+			mf.transferTo(dest);
+
+			BoardFileDTO boardFileDTO = new BoardFileDTO();
+			boardFileDTO.setFileName(fileName);
+			boardFileDTO.setOriName(mf.getOriginalFilename());
+			boardFileDTO.setNum(boardDTO.getNum());
+			noticeDAO.setAddFile(boardFileDTO);
 			
 		}
-			
-			
-
 		
-		
-		return 0; //noticeDAO.setAdd(boardDTO);
+		return result;
 	}
 
+	
 	@Override
 	public int setUpdate(BoardDTO boardDTO) throws Exception {
 		return noticeDAO.setUpdate(boardDTO);

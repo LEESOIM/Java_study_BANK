@@ -5,6 +5,10 @@
 
 <mapper namespace="com.iu.start.board.notice.NoticeDAO">
 
+	<insert id="setADDfile" parameterType="BoardFileDTO">
+		INSERT INTO NOTICEFILE VALUES(FILE_SEQ.NEXTVAL, #{num}, #{filename}, #{oriName})
+	</insert>
+
 <!-- <select id="getList" resultType="NoticeDTO" parameterType="java.util.Map">
 		SELECT * FROM   
 		(
@@ -44,7 +48,10 @@
 	</select>
 	
 	<insert id="setAdd" parameterType="BoardDTO">
-		INSERT INTO NOTICE VALUES(BOARD_SEQ.NEXTVAL,#{title},#{contents},#{writer},SYSDATE,0)
+		<selectKey order="BEFORE" keyProperty="num" resultType="Long">
+			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO NOTICE VALUES(#{num},#{title},#{contents},#{writer},SYSDATE,0)
 	</insert>
 	
 	<update id="setUpdate" parameterType="BoardDTO">

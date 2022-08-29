@@ -3,6 +3,8 @@ package com.iu.start.bankmembers;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,9 +62,9 @@ public class MemberController {
 	
 	//	/member/join POST
 	@RequestMapping(value = "join.iu", method = RequestMethod.POST)
-	public String join(BankMembersDTO bankMembersDTO, MultipartFile photo) throws Exception {
+	public String join(BankMembersDTO bankMembersDTO, MultipartFile photo, ServletContext servletContext) throws Exception {
 		System.out.println("회원가입 성공");
-		int result = memberService.setJoin(bankMembersDTO, photo);
+		int result = memberService.setJoin(bankMembersDTO, photo, servletContext);
 		System.out.println(bankMembersDTO.getUserName());
 		System.out.println(bankMembersDTO.getPassword());
 		

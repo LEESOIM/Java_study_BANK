@@ -6,6 +6,9 @@ import com.iu.start.util.Pager;
 
 public interface BoardDAO {
 	
+	//file
+	public int setAddFile(BoardFileDTO boardFileDTO) throws Exception;
+	
 	//글목록
 	public List<BoardDTO> getList(Pager pager) throws Exception;
 	

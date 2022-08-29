@@ -20,14 +20,14 @@ public class MemberService {
 
 	@Autowired
 	private BankMembersDAO bankMembersDAO;
-	@Autowired
-	private ServletContext servletContext; //외부와 연결
+//	@Autowired 주입하지말고 Controller에서 매개변수로 받아서 사용
+//	private ServletContext servletContext; //외부와 연결
 //	@Autowired
 //	private BankAccountDAO bankAccountDAO;
 
 	
 	//bankMembers 회원가입
-	public int setJoin(BankMembersDTO bankMembersDTO, MultipartFile photo) throws Exception {
+	public int setJoin(BankMembersDTO bankMembersDTO, MultipartFile photo, ServletContext servletContext) throws Exception {
 		int result = bankMembersDAO.setJoin(bankMembersDTO); //FK인 userName을 참조해야하기 때문에 미리 회원가입 시켜준다
 		//1. HDD에 파일을 저장
 		//	파일 저장시 경로는 Tomcat 기준이 아니라 OS(운영체제)의 기준으로 설정
