@@ -80,14 +80,14 @@
 		<form action="list.iu" class="row gy-2 gx-3 align-items-center" style="justify-content: center">
 			<div class="col-auto">
 				<select name="kind" class="form-select">
-					<option value="title">제목</option>
-					<option value="contents">내용</option>
-					<option value="writer">작성자</option>
+					<option class="kinds" value="title">제목</option>
+					<option class="kinds" value="contents">내용</option>
+					<option class="kinds" value="writer">작성자</option>
 				</select>
 			</div>
 			<div class="col-auto">
 				<input type="text" class="form-control" id="autoSizingInput"
-					name="search">
+					name="search" value="${param.search}"> <!-- 파라미터 중에서 search인것을 꺼내쓴다 -->
 			</div>
 			<div class="col-auto">
 				<button type="submit" class="btn btn-primary" id="search">검색</button>
@@ -103,5 +103,19 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
 		crossorigin="anonymous"></script>
+	<script src="/resources/js/board.js"></script>
+	<script>
+		const kinds = document.getElementsByClassName('kinds');
+		let k = '${param.kind}'; //title, writer, contents
+		console.log(k)
+
+		//파라미터로 받은값과 옵션에 있는 밸류값을 비교해서 같은걸 찾아서 selected값에 true를준다
+		for(let i =0;i < kinds.length;i++){
+  			if(k == kinds[i].value){
+			kinds[i].selected = true;
+			break;
+ 		 }
+		}
+	</script>	
 </body>
 </html>
