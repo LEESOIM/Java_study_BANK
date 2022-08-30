@@ -13,17 +13,15 @@ btn.addEventListener('click',function(){
     console.log(i.length);
 
 
-
-
-    // if(i==""){
-    //     alert('ID는 필수입니다');
-    //     return;
-    // }
-    // if(p==""){
-    //     alert('PW는 필수입니다');
-    //     return;
-    // }
-    // frm.submit();
+    if(i==""){
+        error.innerHTML='ID는 필수입니다';
+        return;
+    }
+    if(p==""){
+        error.innerHTML='PW는 필수입니다';
+        return;
+    }
+    frm.submit();
     
 
     // if(i.length>0 && p.length) {

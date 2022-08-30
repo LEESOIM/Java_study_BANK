@@ -36,7 +36,7 @@
 					<label for="password">Password</label>
 				  </div>
 
-				  <div class="error"></div>
+				  <div id="error"></div>
 
 				  <button class="w-100 btn btn-lg btn-primary mt-4" type="button" id="btn">Sign in</button>
 				</form>
