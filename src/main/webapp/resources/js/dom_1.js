@@ -19,3 +19,9 @@ let d3 = document.getElementById("d3");
 let d4 = document.getElementById("d4");
 d4.innerHTML = d3.innerHTML;
 
+
+//window
+//document(DOM)      location  history  navigator  screen
+//  HTML               URL
+//head body
+//      Element(태그,속성,컨텐츠)/Node

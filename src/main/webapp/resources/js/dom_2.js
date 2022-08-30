@@ -8,7 +8,8 @@ const month = document.getElementById('month');
 const date = document.getElementById('date');
 const d4 = document.getElementById('d4');
 
-//alert(d1.value);
+
+//alert(d1.value); ==
 alert(d1.getAttribute('value'));
 
 //d2.type="button";
@@ -23,8 +24,9 @@ for(let i=0;i<count;i++) {
 d3.innerHTML=t;
 
 //-----------------------------------------
+
 let y = "";
-for(let i=1950;i<2023;i++){
+for(let i=1990;i<2023;i++){
     y=y+'<option>'+i+'</option>';
 }
 year.innerHTML=y;
@@ -44,16 +46,15 @@ date.innerHTML=d;
 
 let r = prompt("ROW 갯수 입력");//3
 let c = prompt("Column 갯수 입력");//2
-let tr = "";
-let td = "";
+let table="";
 
-for(let i=0;i<r;i<++){
-    tr=tr+'<tr>'+i+'<tr>';
+for(let i=0;i<r;i++){
+    table=table+'<tr>';
+    
+    for(let j=0;j<c;j++){
+        table=table+'<td>'+i+j+'</td>';
+    }
+
+    table=table+'</tr>';
 }
-
-for(let j=0;j<c;j++){
-    td=td+'<td>'+j+'<td>';
-}
-
-d4.innerHTML=tr;
-d4.innerHTML=td;
+d4.innerHTML=table;

@@ -28,10 +28,10 @@ console.log('------------')
 
 let ar2 = ['4', 1, 3, '2'];
 
-ar2.push(5);
+ar2.push(5); //끝에넣기
 console.log(ar2);
 
-ar2.unshift('9');
+ar2.unshift('9'); //앞에넣기
 console.log(ar2);
 
 ar2.sort();
@@ -40,7 +40,7 @@ console.log(ar2); //오름차순
 ar2.reverse(); //순서 변경
 console.log(ar2); 
 
-ar2.forEach(function(v, i, ar2) {
+ar2.forEach(function(v, i, ar2) { //반복문for문
     console.log("v : ",v); //"v : "+v
     console.log("i : ",i);
     console.log('------------');
