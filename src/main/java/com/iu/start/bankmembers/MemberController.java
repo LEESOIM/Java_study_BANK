@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -50,9 +51,13 @@ public class MemberController {
 		return "redirect:../"; //상대경로 
 	}
 	
+	@GetMapping("join_agree.iu")
+	public String getAgree() throws Exception {
+		return "member/join_agree";
+	}
 	
 	
-	//	/member/join GET
+	//	/member/join_check GET
 	@RequestMapping(value = "join.iu", method = RequestMethod.GET)
 	public void join() {
 		System.out.println("회원가입 실행");

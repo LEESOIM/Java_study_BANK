@@ -8,31 +8,24 @@ for(let i=0;i<ch.length;i++){
         alert(ch[i].value);
     })
 }
-
+//----------------------------------------------------
 
 all.addEventListener('click',function(){
-
-    for(let i=0; i<cb.length; i++) {
-        if(all.checked) {
-            cb[i].checked = true;
-
-            cb[i].addEventListener('click',function(){
-                let count=0;
-                for(let i=0; i<cb.length; i++){
-                    if(cb[i].checked==false){
-                        all.checked=false;
-                    }
-
-                    if(cb[i].checked){
-                        count++;
-                        if(count==cb.length){
-                            all.checked=true;
-                        }
-                    }
-                }           
-            })
-        }else{
-            cb[i].checked = false;
-        }
+    for(let i=0;i<cb.length;i++){
+        cb[i].checked = all.checked;
     }
 })
+
+for(let i=0;i<cb.length;i++){
+    cb[i].addEventListener('click',function(){
+        let result = true;
+        for(let j=0; j<cb.length; j++){
+            if(!cb[j].checked){
+                result=false;
+                console.log(i,':',cb[i].checked)
+                break;
+            }
+        }
+        all.checked = result;
+    })
+}

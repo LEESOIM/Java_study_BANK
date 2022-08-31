@@ -12,35 +12,45 @@
 <c:import url="../template/header.jsp"></c:import>
 
 	 <section class="container-fluid col-lg-2 mt-5">
-	 <form action="./join.iu" method="post" enctype="multipart/form-data">
+	 <form action="./join.iu" method="post" enctype="multipart/form-data" id="frm">
 	 	<div class="row">
 			<main class="form-signin w-80 m-auto">
 				  <h1 class="mb-5 fw-normal text-center">회원가입</h1>
 
 				  <div class="form-floating mb-3">
-					<input type="text" class="form-control" name="userName" id="floatingInput" placeholder="ID">
-					<label for="floatingInput">ID</label>
+					<input type="text" class="form-control" name="userName" id="userName" placeholder="ID">
+					<label for="userName">ID</label>
+					<div id="c1"></div>
 				  </div>
 				  <div class="form-floating mb-3">
-					<input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password">
-					<label for="floatingPassword">Password</label>
+					<input type="password" class="form-control" name="password" id="password" placeholder="Password">
+					<label for="password">Password</label>
+					<div id="c2"></div>
 				  </div>
 				  <div class="form-floating mb-3">
-					<input type="text" class="form-control" name="name" id="floatingName" placeholder="Name">
-					<label for="floatingName">name</label>
+					<input type="password" class="form-control" id="password2" placeholder="Password">
+					<label for="password2">Password</label>
+					<div id="c3"></div>
 				  </div>
 				  <div class="form-floating mb-3">
-					<input type="text" class="form-control" name="email" id="floatingEmail" placeholder="Email">
-					<label for="floatingEmail">email</label>
+					<input type="text" class="form-control" name="name" id="myName" placeholder="Name">
+					<label for="myName">name</label>
+					<div id="c4"></div>
 				  </div>
 				  <div class="form-floating mb-3">
-					<input type="text" class="form-control" name="phone" id="floatingPhone" placeholder="Phone">
-					<label for="floatingPhone">phone</label>
+					<input type="text" class="form-control" name="email" id="email" placeholder="Email">
+					<label for="email">email</label>
+					<div id="c5"></div>
+				  </div>
+				  <div class="form-floating mb-3">
+					<input type="text" class="form-control" name="phone" id="phone" placeholder="Phone">
+					<label for="phone">phone</label>
+					<div id="c6"></div>
 				  </div>
 				  
 					<input type="file" class="form-control" name="photo" id="filse">
 
-				  <button class="w-100 btn btn-lg btn-primary mt-4" type="submit">가입하기</button>
+				  <button class="w-100 btn btn-lg btn-primary mt-4" type="button" id="btn">가입하기</button>
 			  </main>
 	 	</div>
     	</form>
@@ -48,5 +58,9 @@
         
 <c:import url="../template/footer.jsp"></c:import>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+<script src="/resources/js/member.js"></script>
+<script>
+	joinCheck();
+</script>
 </body>
 </html>

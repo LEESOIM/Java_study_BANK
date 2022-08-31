@@ -27,7 +27,7 @@
 				<form action="login.iu" method="post" id="frm">
 				  <h1 class="mb-5 fw-normal text-center">로그인</h1>
 
-				  <div class="form-floating">
+				  <div class="form-floating mb-2">
 					<input type="text" class="form-control" name="userName" id="userName" placeholder="ID" value="ㅇㅅㅇ">
 					<label for="userName">ID</label>
 				  </div>
@@ -36,7 +36,7 @@
 					<label for="password">Password</label>
 				  </div>
 
-				  <div id="error"></div>
+				  <div id="error" ></div>
 
 				  <button class="w-100 btn btn-lg btn-primary mt-4" type="button" id="btn">Sign in</button>
 				</form>
@@ -46,5 +46,8 @@
 <c:import url="../template/footer.jsp"></c:import>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <script src="/resources/js/member.js"></script>
-/body>
+<script>
+	loginCheck();
+</script>
+</body>
 </html>
