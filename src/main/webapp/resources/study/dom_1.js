@@ -21,7 +21,8 @@ d4.innerHTML = d3.innerHTML;
 
 
 //window
-//document(DOM)      location  history  navigator  screen
-//  HTML               URL
-//head body
+//document(DOM)      location  history    navigator  screen
+// 문서(HTML)           URL  앞(뒤)로가기  웹브라우저   화면
+// head body
 //      Element(태그,속성,컨텐츠)/Node
+//->트리구조

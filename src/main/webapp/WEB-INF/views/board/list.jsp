@@ -31,10 +31,10 @@
 				<c:forEach items="${requestScope.list }" var="dto">
 					<tr>
 						<td>${pageScope.dto.num }</td>
-						<td><c:catch>
+						 <td><c:catch> <!--노티스 에러방지 -->
 								<!-- for(int i=0; i'<='end; i++) -->
 								<c:forEach begin="1" end="${dto.depth }">
-									&ensp;
+									 &ensp; <!--스페이스 2번 -->
 								</c:forEach>
 							</c:catch> <a href="./detail.iu?num=${pageScope.dto.num }">${pageScope.dto.title }</a></td>
 						<td>${dto.writer }</td>
@@ -58,7 +58,7 @@
 						href="list.iu?page=${pageScope.i }&kind=${pager.kind }&search=${pager.search}">${pageScope.i }</a></li>
 				</c:forEach>
 
-				<%-- 		<c:choose>
+		<%--<c:choose>
 				<c:when test="${pager.next }"> <!-- if -->
 					<li class="page-item ">
 				</c:when> 
@@ -105,11 +105,11 @@
 		crossorigin="anonymous"></script>
 	<script src="/resources/js/board.js"></script>
 	<script>
+		//파라미터로 받은값과 옵션에 있는 밸류값을 비교해서 같은걸 찾아서 selected값에 true를준다
 		const kinds = document.getElementsByClassName('kinds');
 		let k = '${param.kind}'; //title, writer, contents
 		console.log(k)
 
-		//파라미터로 받은값과 옵션에 있는 밸류값을 비교해서 같은걸 찾아서 selected값에 true를준다
 		for(let i =0;i < kinds.length;i++){
   			if(k == kinds[i].value){
 			kinds[i].selected = true;

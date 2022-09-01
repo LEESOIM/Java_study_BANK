@@ -38,16 +38,11 @@
 					id="exampleFormControlInput1" readonly="readonly"
 					value="${sessionScope.success.userName }">
 			</div>
-			<div>
-				<label>File 1</label>
-				<input type="file" class="form-control" name="files" >
-				<label>File 2</label>
-				<input type="file" class="form-control" name="files" >
-				<label>File 3</label>
-				<input type="file" class="form-control" name="files" >
+			<button type="button" id="fileAdd" class="btn btn-outline-dark btn-sm">파일추가</button>
+			<div id="addFiles">	
 			</div>
 			
-			<div style="text-align: right;">
+			<div class="mt-3" style="text-align: right;">
 				<button class="btn btn-primary" href="./add.iu">글쓰기</button>
 			</div>
 		</form>
@@ -55,11 +50,12 @@
 	<c:import url="../template/footer.jsp"></c:import>
 <!-- bootStrap -->
 <script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-	crossorigin="anonymous"></script>
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+crossorigin="anonymous"></script>
+<script src="/resources/js/board.js"></script>
 <script type="text/javascript">
 	$("#contents").summernote();
-</script>
+	</script>
 </body>
 </html>
