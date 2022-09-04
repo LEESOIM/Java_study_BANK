@@ -32,7 +32,7 @@
 					<label for="userName">ID</label>
 				  </div>
 				  <div class="form-floating">
-					<input type="password" class="form-control" name="password" id="password" placeholder="Password" value="1234">
+					<input type="password" class="form-control" name="password" id="password" placeholder="Password" value="123456">
 					<label for="password">Password</label>
 				  </div>
 

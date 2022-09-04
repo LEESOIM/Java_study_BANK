@@ -56,6 +56,6 @@ crossorigin="anonymous"></script>
 <script src="/resources/js/board.js"></script>
 <script type="text/javascript">
 	$("#contents").summernote();
-	</script>
+</script>
 </body>
 </html>

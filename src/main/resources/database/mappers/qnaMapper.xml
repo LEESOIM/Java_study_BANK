@@ -46,7 +46,7 @@
 		SELECT COUNT(NUM) FROM QNA <include refid="search"></include>
 	</select>
 	
-	<select id="getDetail" resultType="QnaDTO" parameterType="BoardDTO" resultMap="getDetailResult">
+	<select id="getDetail" parameterType="BoardDTO" resultMap="getDetailResult">
 		SELECT *
 		FROM QNA Q
 		LEFT JOIN
@@ -62,6 +62,10 @@
 		<result column="WRITER" property="writer"/>
 		<result column="REGDATE" property="regDate"/>
 		<result column="HIT" property="hit"/>
+		<result column="REF" property="ref"/>
+		<result column="STEP" property="step"/>
+		<result column="DEPTH" property="depth"/>
+		
 		<collection property="boardFileDTOs" javaType="List" ofType="BoardFileDTO">
 			<id column="FILENUM" property="fileNum"/> <!-- BoardFileDTO의 num -->
 			<result column="FILENAME" property="fileName"/>

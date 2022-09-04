@@ -43,7 +43,7 @@
 		SELECT COUNT(NUM) FROM NOTICE <include refid="search"></include>
 	</select>
 	
-	<select id="getDetail" resultType="NoticeDTO" parameterType="BoardDTO" resultMap="getDetailResult" >
+	<select id="getDetail" parameterType="BoardDTO" resultMap="getDetailResult" >
 		SELECT *
 		FROM NOTICE N
 		LEFT JOIN

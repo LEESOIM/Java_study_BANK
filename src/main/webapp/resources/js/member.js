@@ -34,13 +34,24 @@ function loginCheck(){
 }
 
 
+//약관동의
 function check(){
-    const all = document.getElementById('all');
-    const cb = document.getElementsByClassName('cb');
+    //const all = document.getElementById('all');
+    const all = document.querySelector('#all'); //all 아이디 가져와
+    //const cb = document.getElementsByClassName('cb');
+    const cb = document.querySelectorAll('.cb'); //cb 클래스 가져와
     const req = document.getElementsByClassName('req');
     const join = document.getElementById('join');
     const frm = document.getElementById('frm');
-    
+
+    console.log('forEach');
+
+    cb.forEach(function(v,i,ar){
+        console.log(v);
+    });
+
+
+
     all.addEventListener('click',function(){
         for(let i=0; i<cb.length; i++){
             cb[i].checked = all.checked;
@@ -180,8 +191,7 @@ function joinCheck(){
 
     btn.addEventListener('click',function(){
         if(idCheck&&pwCheck&&pw2Check&&nameCheck&&emailCheck&&phoneCheck){
-            alert('전송');
-            // frm.submit;
+            frm.submit();
         }else{
             alert('필수정보를 입력해주세요');
         }
