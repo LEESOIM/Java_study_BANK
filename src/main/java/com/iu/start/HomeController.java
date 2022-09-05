@@ -1,6 +1,5 @@
 package com.iu.start;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
@@ -27,11 +26,12 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpServletResponse response) {
-		System.out.println("sqlSession : "+sqlSession);
-		
-		Cookie cookie = new Cookie("hi", "hello");
-		cookie.setMaxAge(60); //60초있다가 사라졋
-		response.addCookie(cookie);
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "index";
 	}
 	
