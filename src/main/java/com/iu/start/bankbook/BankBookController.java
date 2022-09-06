@@ -24,7 +24,7 @@ public class BankBookController {
 	
 	//---------------------------------------Comment---------------------------------------
 	
-//	//1) JSP에 출력하고 결과물을 응답으로 전송
+	//1) JSP에 출력하고 결과물을 응답으로 전송
 //	@GetMapping("commentList.iu")
 //	public ModelAndView getCommentList(CommentPager commentPager) throws Exception {
 //		ModelAndView mv = new ModelAndView();
@@ -45,7 +45,7 @@ public class BankBookController {
 	
 	
 	
-//	//1) JSP에 출력하고 결과물을 응답으로 전송
+	//1) JSP에 출력하고 결과물을 응답으로 전송
 //	@PostMapping("commentAdd.iu")
 //	public ModelAndView setCommentAdd(BankBookCommentDTO bankBookCommentDTO) throws Exception {
 //		ModelAndView mv = new ModelAndView();
@@ -61,9 +61,16 @@ public class BankBookController {
 	@ResponseBody
 	public String setCommentAdd(BankBookCommentDTO bankBookCommentDTO) throws Exception {
 		int result = bankBookService.setCommentAdd(bankBookCommentDTO);
-		String jsonResult="{\"result\":\""+result+"\"}"; // {"result":"1"}
+		String jsonResult="{\"success\":\""+result+"\"}"; // {"result":"1"}
 		return jsonResult;
 	}
+	
+//	JSON
+//	DTO == {}
+//	num=1 == {"num":1, "bookNum":123, "writer":"name"}
+//	[{"num":1, "bookNum":123, "writer":"name"}, {"num":2, "bookNum":123, "writer":"name"}, {"num":3, "bookNum":123, "writer":"name"}]
+	
+	
 	
 	//---------------------------------------Comment---------------------------------------
 	

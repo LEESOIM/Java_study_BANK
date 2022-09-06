@@ -33,11 +33,12 @@ btn.addEventListener('click', function(){
     xhttp.onreadystatechange=function(){
         if(this.readyState==4 && this.status==200){
             let result = xhttp.responseText.trim();
-            console.log(result);
+            console.log(result); // 1 or {"success":"1"}
 
-            result = JSON.parse(result);
-            console.log(result.result);
-            if(result.result==1){
+            // JSON 형식의 문자열을 JSON 객체로 변환
+            result = JSON.parse(result); 
+            console.log(result.success); //1
+            if(result.success==1){
                 alert('댓글 등록 완료');
                 getCommentList();
             }
@@ -53,29 +54,33 @@ function getCommentList() {
     //2. Method, URL 준비
     xhttp.open('GET', 'commentList.iu?page=1&bookNum='+btn.getAttribute('data-booknum'));
 
-    //3. 요청 전송
+    //3.Enctype(POST일 경우만)
+
+    //4. 요청 전송(POST일 경우 파라미터 추가)
     xhttp.send();
 
-    //4. 응답 처리
+    //5. 응답 처리
     xhttp.addEventListener("readystatechange", function(){
         if(xhttp.readyState==4 && xhttp.status==200) {
-            console.log(xhttp.responseText);
-
+            
+            console.log(xhttp.responseText); //테이블jsp형식 or 뭉탱이
             //1) jsp 사용한 결과물
-            //commentList.innerHTML=xhttp.responseText.trim(); //String 타입만 가능
+//            commentList.innerHTML=xhttp.responseText.trim(); 
+
 
             //2) json 결과물
-            //JSON오브젝트 타입으로 바꿔줌
+            //JSON 오브젝트 타입으로 바꿔줌
             let ar = JSON.parse(xhttp.responseText.trim());
+            console.log(ar); //[{}, {}, ...]
             
             //<table class="table table-striped"></table>
             let result = document.createElement('table');
             let resultAttr = document.createAttribute('class');
-            resultAttr.value = 'table table-striped';
+            resultAttr.value = 'table';
             result.setAttributeNode(resultAttr);
 
+            commentList.innerHTML="";
             for(let i=0;i<ar.length;i++){
-                console.log(ar[i]);
 
                 let tr = document.createElement('tr') //<tr></tr>
 
