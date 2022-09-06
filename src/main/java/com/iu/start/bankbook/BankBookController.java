@@ -6,9 +6,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.iu.start.util.CommentPager;
 
 @Controller
 @RequestMapping(value="/bankbook/*")
@@ -16,7 +21,52 @@ public class BankBookController {
 	
 	@Autowired
 	private BankBookService bankBookService;
-
+	
+	//---------------------------------------Comment---------------------------------------
+	
+//	//1) JSP에 출력하고 결과물을 응답으로 전송
+//	@GetMapping("commentList.iu")
+//	public ModelAndView getCommentList(CommentPager commentPager) throws Exception {
+//		ModelAndView mv = new ModelAndView();
+//		List<BankBookCommentDTO> ar = bankBookService.getCommentList(commentPager);
+//		mv.addObject("commentList", ar);
+//		mv.setViewName("common/commentList");
+//		return mv;
+//	}
+	
+	
+	//2) jsp를 거치치 않고 JSON을 통해서(ResponseBody에 담아서) 데이터만 view로 보내는 방법
+	@GetMapping("commentList.iu")
+	@ResponseBody
+	public List<BankBookCommentDTO> getCommentList(CommentPager commentPager) throws Exception {
+		List<BankBookCommentDTO> ar = bankBookService.getCommentList(commentPager);
+		return ar;
+	}
+	
+	
+	
+//	//1) JSP에 출력하고 결과물을 응답으로 전송
+//	@PostMapping("commentAdd.iu")
+//	public ModelAndView setCommentAdd(BankBookCommentDTO bankBookCommentDTO) throws Exception {
+//		ModelAndView mv = new ModelAndView();
+//		int result = bankBookService.setCommentAdd(bankBookCommentDTO);
+//		mv.addObject("result", result);
+//		mv.setViewName("common/ajaxResult");
+//		return mv;
+//	}
+	
+	
+	//2) jsp를 거치치 않고 JSON을 통해서(ResponseBody에 담아서) 데이터만 view로 보내는 방법
+	@PostMapping("commentAdd.iu")
+	@ResponseBody
+	public String setCommentAdd(BankBookCommentDTO bankBookCommentDTO) throws Exception {
+		int result = bankBookService.setCommentAdd(bankBookCommentDTO);
+		String jsonResult="{\"result\":\""+result+"\"}"; // {"result":"1"}
+		return jsonResult;
+	}
+	
+	//---------------------------------------Comment---------------------------------------
+	
 	@RequestMapping(value="list.iu", method = RequestMethod.GET)
 	public String list(Model model) throws Exception { 				//1)String
 		System.out.println("리스트 실행");

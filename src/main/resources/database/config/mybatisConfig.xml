@@ -19,6 +19,7 @@
 		<typeAlias type="com.iu.start.bankmembers.MembersFileDTO" alias="MembersFileDTO"/>
 		<typeAlias type="com.iu.start.board.impl.BoardFileDTO" alias="BoardFileDTO"/>
 		<typeAlias type="com.iu.start.bankbook.BankBookCommentDTO" alias="BankBookCommentDTO"/>
+		<typeAlias type="com.iu.start.util.CommentPager" alias="CommentPager"/>
 		
 	</typeAliases>
 

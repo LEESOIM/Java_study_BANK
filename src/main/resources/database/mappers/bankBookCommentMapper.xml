@@ -5,8 +5,15 @@
     
 <mapper namespace="com.iu.start.bankbook.BankBookCommentDAO">
 
-	<insert id="setBankBookComment" parameterType="BankBookCommentDTO">
+	<insert id="setCommentAdd" parameterType="BankBookCommentDTO">
 		INSERT INTO BB_COMMENT VALUES(BOARD_SEQ.NEXTVAL,#{bookNum},#{writer},#{contents},SYSDATE)
 	</insert>
+	
+	<select id="getCommentList" parameterType="CommentPager" resultType="BankBookCommentDTO">
+		SELECT * FROM
+	    (SELECT ROWNUM R, C.* FROM
+		(SELECT * FROM BB_COMMENT WHERE BOOKNUM=#{bookNum} ORDER BY NUM DESC) C) <!-- 해당글의 댓글만 불러와서 C 테이블 정렬 먼저 -->
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+	</select>
 
 </mapper>

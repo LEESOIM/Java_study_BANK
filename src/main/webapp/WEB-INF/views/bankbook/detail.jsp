@@ -48,11 +48,32 @@
 					href="../bankaccount/add.iu?bookNum=${dto.bookNum}">가입하기</a>
 			</c:if>
 		</div>
+
+		<!-- Comment -->
+		<div class="row">
+			<div class="mb-3">
+				<label for="writer" class="form-label">USERNAME</label>
+				<input type="text" class="form-control" id="writer">
+			</div>
+			<div class="mb-3">
+				<label for="contents" class="form-label">COMMENT</label>
+				<textarea class="form-control" id="contents" rows="3"></textarea>
+			</div>
+			<div class="mb-3">
+				<button type="button" class="btn btn-primary" id="btn" data-booknum="${dto.bookNum}">댓글등록</button>
+			</div>
+		</div>
+
+		<!-- Comment 출력 -->
+		<div id="commentList">
+
+		</div>
 	</section>
 	<c:import url="../template/footer.jsp"></c:import>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
 		crossorigin="anonymous"></script>
+	<script src="/resources/js/bankbookComment.js"></script>
 </body>
 </html>

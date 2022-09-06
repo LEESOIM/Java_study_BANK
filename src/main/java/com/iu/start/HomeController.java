@@ -1,5 +1,6 @@
 package com.iu.start;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
@@ -26,6 +27,8 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpServletResponse response) {
+		System.out.println("sqlSession : "+sqlSession);
+		
 		try {
 			Thread.sleep(10000);
 		} catch (InterruptedException e) {

@@ -12,8 +12,8 @@ import org.springframework.web.multipart.MultipartFile;
 @Component //1)Annotation : 객체를 만들어달라
 public class FileManager {
 
-	@Autowired //만들어진 객체를 주입시켜 달라
-	private ServletContext servletContext;
+//	@Autowired //만들어진 객체를 주입시켜 달라
+//	private ServletContext servletContext; ----매개변수로 받아오기때문에 필요가 없다!!
 	
 	//save				//2)매개변수 선언
 	public String saveFile(ServletContext servletContext, String path, MultipartFile multipartFile) throws Exception {
