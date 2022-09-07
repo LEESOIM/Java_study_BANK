@@ -1,7 +1,9 @@
 package com.iu.start.bankbook;
 
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,9 +40,12 @@ public class BankBookController {
 	//2) jsp를 거치치 않고 JSON을 통해서(ResponseBody에 담아서) 데이터만 view로 보내는 방법
 	@GetMapping("commentList.iu")
 	@ResponseBody
-	public List<BankBookCommentDTO> getCommentList(CommentPager commentPager) throws Exception {
+	public Map<String, Object> getCommentList(CommentPager commentPager) throws Exception {
 		List<BankBookCommentDTO> ar = bankBookService.getCommentList(commentPager);
-		return ar;
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("list", ar);
+		map.put("pager", commentPager);
+		return map;
 	}
 	
 	
@@ -64,13 +69,23 @@ public class BankBookController {
 		String jsonResult="{\"success\":\""+result+"\"}"; // {"result":"1"}
 		return jsonResult;
 	}
+
 	
+//1)pom.xml에 jackson 추가	2)JSON으로 바꿀 데이터(dto/list)를 Body에 담아서 리턴	
 //	JSON
-//	DTO == {}
+//	DTO == {"키(멤버변수)":"값"}
 //	num=1 == {"num":1, "bookNum":123, "writer":"name"}
 //	[{"num":1, "bookNum":123, "writer":"name"}, {"num":2, "bookNum":123, "writer":"name"}, {"num":3, "bookNum":123, "writer":"name"}]
 	
 	
+	
+	@PostMapping("commentDelete.iu")
+	@ResponseBody
+	public int setCommentDelete(BankBookCommentDTO bankBookCommentDTO) throws Exception {
+		int result = bankBookService.setCommentDelete(bankBookCommentDTO);
+		return result;
+	}
+
 	
 	//---------------------------------------Comment---------------------------------------
 	

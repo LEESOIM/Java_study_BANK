@@ -36,4 +36,12 @@ public class BankBookCommentDAOTest extends MyAbstractTest{
 		List<BankBookCommentDTO> ar = bankBookCommentDAO.getCommentList(commentPager);
 		assertNotEquals(0, ar.size());
 	}
+	
+	@Test
+	public void setCommentDeleteTest() throws Exception {
+		BankBookCommentDTO bankBookCommentDTO = new BankBookCommentDTO();
+		bankBookCommentDTO.setNum(955L);
+		int result = bankBookCommentDAO.setCommentDelete(bankBookCommentDTO);
+		assertEquals(1, result);
+	}
 }

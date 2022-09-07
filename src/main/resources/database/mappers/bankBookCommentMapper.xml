@@ -15,5 +15,14 @@
 		(SELECT * FROM BB_COMMENT WHERE BOOKNUM=#{bookNum} ORDER BY NUM DESC) C) <!-- 해당글의 댓글만 불러와서 C 테이블 정렬 먼저 -->
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
 	</select>
+	
+	<select id="getCommentListTotalCount" parameterType="CommentPager" resultType="java.lang.Long">
+		SELECT COUNT(NUM) FROM BB_COMMENT WHERE BOOKNUM=#{bookNum}
+	</select>
 
+	<delete id="setCommentDelete" parameterType="BankBookCommentDTO">
+		DELETE BB_COMMENT WHERE NUM=#{num}
+	</delete>
+	
+	
 </mapper>
