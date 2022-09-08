@@ -84,19 +84,20 @@
 				  </div>
 				  <div class="modal-body">
 					<form>
-					  <div class="mb-3">
-						<label for="recipient-name" class="col-form-label">Writer:</label>
-						<input type="text" class="form-control" id="recipient-name">
-					  </div>
-					  <div class="mb-3">
-						<label for="message-text" class="col-form-label">Contents:</label>
-						<textarea class="form-control" id="message-text"></textarea>
-					  </div>
+						<input type="hidden" id="num">
+					  	<div class="mb-3">
+							<label for="updateWriter" class="col-form-label">Writer:</label>
+							<input type="text" class="form-control" id="updateWriter">
+					  	</div>
+					  	<div class="mb-3">
+							<label for="updateContents" class="col-form-label">Contents:</label>
+							<textarea class="form-control" id="updateContents"></textarea>
+					  	</div>
 					</form>
 				  </div>
 				  <div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-					<button type="button" class="btn btn-primary">확인</button>
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+						<button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="update">확인</button>
 				  </div>
 				</div>
 			  </div>

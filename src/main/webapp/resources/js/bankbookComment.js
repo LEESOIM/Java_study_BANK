@@ -114,6 +114,12 @@ function getCommentList(p, bn) {
                 tr.appendChild(td);
 
                 td = document.createElement('td')
+                //날짜형식변경
+                // const date = new Date(ar[i].regDate);
+                // let y = date.getFullYear();
+                // let m = date.getMonth()+1;
+                // let d = date.getDate();
+                // tx = document.createTextNode(y+'-'+m+'-'+d);
                 tx = document.createTextNode(ar[i].regDate);
                 td.appendChild(tx);
                 tr.appendChild(td);
@@ -123,6 +129,11 @@ function getCommentList(p, bn) {
                 tdAttr.value='update';
                 tx = document.createTextNode('수정');
                 td.appendChild(tx);
+                td.setAttributeNode(tdAttr);
+                tr.appendChild(td);
+
+                tdAttr = document.createAttribute('data-comment-num');
+                tdAttr.value=ar[i].num;
                 td.setAttributeNode(tdAttr);
                 tr.appendChild(td);
 
@@ -168,7 +179,7 @@ more.onclick=function(){
 }
 
 
-//댓글 삭제/ 수정
+//댓글 삭제/수정
 commentList.addEventListener('click', function(event){
     
     console.log(event.target); //실제 클릭한 영역
@@ -216,8 +227,58 @@ commentList.addEventListener('click', function(event){
         // let v = contents.innerHTML; 
         // contents.innerHTML="<textarea>"+v+"</textarea>"
 
-        //2)모달창
-        document.querySelector('#up').click();
+        //2)모달창(화면 위에 작은 화면)
+        let num = event.target.getAttribute("data-comment-num");
+        let writer = event.target.previousSibling.previousSibling.innerHTML;
+        let contents = event.target.previousSibling.previousSibling.previousSibling.innerHTML;
+        console.log(num,writer,contents);
+        document.querySelector("#num").value = num;
+        document.querySelector("#updateWriter").value = writer; //input
+        document.querySelector("#updateContents").value = contents; //<textarea>태그
+
+        document.querySelector("#up").click();
     }
 
+})
+
+
+//modal 수정 버튼 클릭
+const update = document.querySelector("#update");
+update.addEventListener("click", function(){
+    //modal에서 num, contents 
+    let num = document.querySelector("#num").value;
+    let contents = document.querySelector("#updateContents").value;
+
+    //Ajax
+    //1. XMLHTTPRequest 생성
+    const xhttp = new XMLHttpRequest();
+
+    //2. Method, URL 준비
+    xhttp.open('POST','commentUpdate.iu')
+           
+    //3.Enctype(POST일 경우만 header 정보 요청)
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    //4. 요청 전송(POST일 경우 파라미터 추가)
+    xhttp.send('num='+num+'&contents='+contents);
+
+    //5. 응답 처리
+    xhttp.onreadystatechange = function(){
+        if(xhttp.readyState==4&&xhttp.status==200){
+            let result = xhttp.responseText.trim();
+
+            if(result>0){
+                alert("댓글이 수정되었습니다");
+
+                for(let i=0;i<commentList.children.length;){
+                    commentList.children[0].remove();
+                }
+                page=1;
+                getCommentList(page, bookNum);
+
+            }else{
+                
+            }
+        }
+    }
 })

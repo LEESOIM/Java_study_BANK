@@ -30,6 +30,9 @@ public class BankBookService {
 		return bankBookCommentDAO.setCommentDelete(bankBookCommentDTO);
 	}
 	
+	public int setCommentUpdate(BankBookCommentDTO bankBookCommentDTO) throws Exception {
+		return bankBookCommentDAO.setCommentUpdate(bankBookCommentDTO);
+	}
 	
 	
 	@Autowired

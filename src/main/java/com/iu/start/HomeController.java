@@ -29,13 +29,11 @@ public class HomeController {
 	public String home(HttpServletResponse response) {
 		System.out.println("sqlSession : "+sqlSession);
 		
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Cookie cookie = new Cookie("hi", "hello");
+		cookie.setMaxAge(60); //60초있다가 사라졋
+		response.addCookie(cookie);
 		return "index";
+		
 	}
 	
 }

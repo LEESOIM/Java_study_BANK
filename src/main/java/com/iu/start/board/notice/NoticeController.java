@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.iu.start.bankmembers.BankMembersDTO;
 import com.iu.start.board.impl.BoardDTO;
 import com.iu.start.util.Pager;
 
@@ -51,8 +52,14 @@ public class NoticeController {
 	
 	//글쓰기 입력폼
 	@RequestMapping(value = "add.iu", method = RequestMethod.GET)
-	public String setAdd() throws Exception {
-		return "board/add";
+	public String setAdd(HttpSession session) throws Exception {
+		BankMembersDTO bankMembersDTO = (BankMembersDTO)session.getAttribute("success");
+		
+		if(bankMembersDTO != null) {
+			return "board/add";
+		}else {
+			return "redirect:../member/login.iu";
+		}
 	}
 	
 	//글쓰기 Insert

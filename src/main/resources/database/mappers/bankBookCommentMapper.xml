@@ -24,5 +24,9 @@
 		DELETE BB_COMMENT WHERE NUM=#{num}
 	</delete>
 	
+	<update id="setCommentUpdate" parameterType="BankBookCommentDTO">
+		UPDATE BB_COMMENT SET CONTENTS=#{contents} WHERE NUM=#{num}
+	</update>
+	
 	
 </mapper>
