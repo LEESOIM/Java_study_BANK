@@ -93,9 +93,9 @@
 				<button type="submit" class="btn btn-primary" id="search">검색</button>
 			</div>
 		</form>
-			<%-- <c:if test="${not empty sessionScope.success}"> --%>
+<%-- <c:if test="${not empty sessionScope.success}"> --%>
 					<a class="btn btn-primary" href="./add.iu">글쓰기</a>
-			<%-- </c:if> --%>
+<%-- </c:if> --%>
 
 	</section>
 	<c:import url="../template/footer.jsp"></c:import>

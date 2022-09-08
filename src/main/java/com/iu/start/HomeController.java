@@ -29,9 +29,9 @@ public class HomeController {
 	public String home(HttpServletResponse response) {
 		System.out.println("sqlSession : "+sqlSession);
 		
-		Cookie cookie = new Cookie("hi", "hello");
-		cookie.setMaxAge(60); //60초있다가 사라졋
-		response.addCookie(cookie);
+//		Cookie cookie = new Cookie("hi", "hello");
+//		cookie.setMaxAge(60); //60초있다가 사라졋
+//		response.addCookie(cookie);
 		return "index";
 		
 	}

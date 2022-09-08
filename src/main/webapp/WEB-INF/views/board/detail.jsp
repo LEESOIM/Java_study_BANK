@@ -43,10 +43,10 @@
 
 		<div class="mt-4" style="text-align: right;">
 			<a href="./reply.iu?num=${boardDTO.num }" class="btn btn-primary">답글쓰기</a>
-			<c:if test="${sessionScope.success.userName eq requestScope.boardDTO.writer}">
+<%-- <c:if test="${sessionScope.success.userName eq requestScope.boardDTO.writer}"> --%>
 				<a class="btn btn-primary" href="./update.iu?num=${boardDTO.num}">수정</a>
 				<a class="btn btn-primary" href="./delete.iu?num=${boardDTO.num}">삭제</a>
-			</c:if>
+<%-- </c:if> --%>
 			<a class="btn btn-primary" href="./list.iu">글목록</a>
 		</div>
 	</section>
