@@ -9,9 +9,28 @@
 		INSERT INTO MEMBERFILE VALUES(FILE_SEQ.NEXTVAL,#{userName},#{fileName},#{oriName})
 	</insert>
 	
-	<select id="getLogin" parameterType="BankMembersDTO" resultType="BankMembersDTO">
-		SELECT USERNAME, NAME FROM BANKMEMBERS WHERE USERNAME=#{userName} AND PASSWORD=#{password}
+	<select id="getLogin" parameterType="BankMembersDTO" resultMap="getLoginResult">
+		<!-- SELECT USERNAME, NAME FROM BANKMEMBERS WHERE USERNAME=#{userName} AND PASSWORD=#{password} -->
+		<!-- SELECT USERNAME, NAME FROM BANKMEMBERS WHERE USERNAME=#{userName} AND PASSWORD=#{password} -->
+		SELECT USERNAME, M.NAME, ROLENUM, R.ROLENAME
+		FROM BANKMEMBERS M
+		INNER JOIN MEMBER_ROLE MR
+		USING (USERNAME)
+		INNER JOIN ROLE R
+		USING (ROLENUM)
+		WHERE USERNAME=#{userName} AND PASSWORD=#{password}
+		ORDER BY ROLENUM ASC
 	</select>
+	
+	<resultMap type="BankMembersDTO" id="getLoginResult">
+		<id column="USERNAME" property="userName"/>
+		<result column="NAME" property="name"/>
+		<collection property="roleDTOs" javaType="List" ofType="RoleDTO">
+			<id column="ROLENUM" property="roleNum"/>
+			<result column="ROLENAME" property="roleName"/>			
+		</collection>
+	</resultMap>
+	
 
 	<select id="getSearchByID" parameterType="String" resultType="BankMembersDTO">
 		SELECT * FROM BANKMEMBERS WHERE USERNAME LIKE '%'||#{search}||'%' ORDER BY USERNAME ASC

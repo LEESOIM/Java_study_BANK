@@ -94,7 +94,15 @@ requestScope : 작은영역부터 넓은영역까지 찾으러감(page<request<s
 				</tbody>
 			</table>
 		</div>
-
+	<div>
+		<c:forEach items="${sessionScope.success.roleDTOs }" var="roleDTO">
+			<div>${pageScope.roleDTO.roleNum}, ${roleDTO.roleName}</div>
+		</c:forEach>
+		
+		<h1>당신은 ${success.roleDTOs.get(0).roleName } 입니다.</h1>
+		<h1>당신은 ${success.roleDTOs["0"].roleName } 입니다.</h1>
+	</div>
+	
 	</section>
 	<c:import url="../template/footer.jsp"></c:import>
 	<script

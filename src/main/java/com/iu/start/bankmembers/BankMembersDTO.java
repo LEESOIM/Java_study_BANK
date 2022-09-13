@@ -13,7 +13,15 @@ public class BankMembersDTO {
 	private String phone;
 	private List<BankAccountDTO> bankAccountDTOs; //1:N
 	private MembersFileDTO membersFileDTO; //1:1
+	private List<RoleDTO> roleDTOs; //1:N(회원 한명이 여러개 등급을 가지고있다)
 	
+	
+	public List<RoleDTO> getRoleDTOs() {
+		return roleDTOs;
+	}
+	public void setRoleDTOs(List<RoleDTO> roleDTOs) {
+		this.roleDTOs = roleDTOs;
+	}
 	
 	public MembersFileDTO getMembersFileDTO() {
 		return membersFileDTO;
