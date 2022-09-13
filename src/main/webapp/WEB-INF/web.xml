@@ -18,6 +18,21 @@
       <url-pattern>/*</url-pattern>
    </filter-mapping>
    
+   <error-page> 
+   		<error-code>404</error-code>
+   		<error-code>405</error-code>
+   		<location>/WEB-INF/views/errors/error_404.jsp</location> <!-- 1)jsp경로 직접 입력 -->
+   </error-page>
+   
+   <error-page> 
+   		<error-code>400</error-code>
+   		<location>/error/error400</location> <!-- 2)Controller로 에러 처리 url 전달 -->
+   </error-page>
+   
+   <error-page>
+   		<error-code>500</error-code>
+   		<location>/error/error500</location>
+   </error-page>
    
    	<!-- database-context.xml에서 만든 설정 파일을 등록 -->
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->

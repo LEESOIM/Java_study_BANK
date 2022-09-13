@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,6 +40,10 @@ public class NoticeController {
 		mv.addObject("list", ar); //데이터를 "list"라는 이름으로 저장한다
 		mv.addObject("pager", pager); //주소값을 "pager"라는 이름으로 저장한다
 		mv.setViewName("board/list"); //데이터들을 이동할 경로
+		
+		if(ar.size()!=0) {
+			throw new Exception();
+		}
 		return mv;
 	}
 	
@@ -103,6 +108,21 @@ public class NoticeController {
 	public String setDelete(BoardDTO boardDTO) throws Exception {
 		int result = noticeService.setDelete(boardDTO);
 		return "redirect:list.iu";
+	}
+	
+	
+	@ExceptionHandler(NullPointerException.class)
+	public ModelAndView exceptionTest() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("errors/error_404");
+		return mv;
+	}
+	
+	@ExceptionHandler(Exception.class)
+	public ModelAndView exceptionTest2(Exception e) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("errors/error_404");
+		return mv;
 	}
 	
 }
