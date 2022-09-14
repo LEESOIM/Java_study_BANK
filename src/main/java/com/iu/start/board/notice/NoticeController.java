@@ -110,7 +110,8 @@ public class NoticeController {
 		return "redirect:list.iu";
 	}
 	
-	
+
+	//1) 각각의 Controller 내부에 예외 처리하는 메서드를 선언
 	@ExceptionHandler(NullPointerException.class)
 	public ModelAndView exceptionTest() {
 		ModelAndView mv = new ModelAndView();

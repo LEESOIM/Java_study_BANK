@@ -26,7 +26,7 @@
    
    <error-page> 
    		<error-code>400</error-code>
-   		<location>/error/error400</location> <!-- 2)Controller로 에러 처리 url 전달 -->
+   		<location>/error/error400</location> <!-- 2)Controller로 에러 처리할 url 전달 -->
    </error-page>
    
    <error-page>
