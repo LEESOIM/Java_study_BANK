@@ -9,13 +9,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.start.bankmembers.BankMembersDTO;
 import com.iu.start.board.impl.BoardDTO;
+import com.iu.start.board.impl.BoardFileDTO;
 import com.iu.start.util.Pager;
 
 @Controller
@@ -31,6 +34,16 @@ public class NoticeController {
 	}
 	
 	
+	//Update시 파일삭제
+	@PostMapping("fileDelete")
+	@ResponseBody
+	public int setFileDelete(BoardFileDTO boardFileDTO, HttpSession session) throws Exception {
+		System.out.println("File Delete");
+		System.out.println("Context  : "+session.getServletContext());
+		int result = noticeService.setFileDelete(boardFileDTO, session.getServletContext());
+		return result;
+	}
+	
 	
 	//글목록
 	@RequestMapping(value = "list.iu", method = RequestMethod.GET)
@@ -40,10 +53,6 @@ public class NoticeController {
 		mv.addObject("list", ar); //데이터를 "list"라는 이름으로 저장한다
 		mv.addObject("pager", pager); //주소값을 "pager"라는 이름으로 저장한다
 		mv.setViewName("board/list"); //데이터들을 이동할 경로
-		
-		if(ar.size()!=0) {
-			throw new Exception();
-		}
 		return mv;
 	}
 	
@@ -98,8 +107,8 @@ public class NoticeController {
 	
 	//글수정 Update
 	@RequestMapping(value = "update.iu", method = RequestMethod.POST)
-	public String setUpdate(BoardDTO boardDTO) throws Exception {
-		int result = noticeService.setUpdate(boardDTO);
+	public String setUpdate(BoardDTO boardDTO, MultipartFile [] files, HttpSession session) throws Exception {
+		int result = noticeService.setUpdate(boardDTO, files, session.getServletContext());
 		return "redirect:detail.iu?num="+boardDTO.getNum();
 	}
 	

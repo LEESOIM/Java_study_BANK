@@ -2,8 +2,8 @@ package com.iu.start.file;
 
 public abstract class FileDTO {
 	private Long fileNum;
-	private String fileName;
-	private String oriName;
+	private String fileName; //하드디스크에 저장되는 이름
+	private String oriName; //업로드할때 이름
 	
 	public Long getFileNum() {
 		return fileNum;

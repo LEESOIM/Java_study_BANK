@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<!-- jQuery -->
+<!-- summernote jQuery -->
 <script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- bootStrap -->
 <link
@@ -13,6 +13,7 @@
 	rel="stylesheet"
 	integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
 	crossorigin="anonymous">
+<!-- summernote -->
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 </head>
@@ -38,8 +39,8 @@
 					id="exampleFormControlInput1" readonly="readonly"
 					value="${sessionScope.success.userName }">
 			</div>
-			<button type="button" id="fileAdd" class="btn btn-outline-dark btn-sm">파일추가</button>
 			<div id="addFiles">	
+				<button type="button" id="fileAdd" class="btn btn-outline-dark btn-sm">파일추가</button>
 			</div>
 			
 			<div class="mt-3" style="text-align: right;">

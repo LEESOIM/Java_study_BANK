@@ -24,7 +24,22 @@ public class NoticeService implements BoardService {
 	private NoticeDAO noticeDAO;
 	@Autowired
 	private FileManager fileManager;
+	
+	
+	@Override
+	public int setFileDelete(BoardFileDTO boardFileDTO, ServletContext servletContext) throws Exception {
+		boardFileDTO = noticeDAO.getFileDetail(boardFileDTO);
+		int result = noticeDAO.setFileDelete(boardFileDTO);
+		String path = "resources/upload/notice";
+		
+		if(result>0) {
+			boolean check =	fileManager.deleteFile(servletContext, path, boardFileDTO);
+			System.out.println("fileDelete :"+check);
+		}
+		return result;
+	}
 
+	
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
 
@@ -157,8 +172,27 @@ public class NoticeService implements BoardService {
 	}
 
 	@Override
-	public int setUpdate(BoardDTO boardDTO) throws Exception {
-		return noticeDAO.setUpdate(boardDTO);
+	public int setUpdate(BoardDTO boardDTO, MultipartFile[] files, ServletContext servletContext) throws Exception {
+		String path = "resources/upload/notice";
+		int result = noticeDAO.setUpdate(boardDTO);
+		
+		if(result<1) {
+			return result;
+		}
+		for (MultipartFile multipartFile : files) {
+			if (multipartFile.isEmpty()) {
+				continue;
+			}
+
+			String fileName = fileManager.saveFile(servletContext, path, multipartFile);
+			BoardFileDTO boardFileDTO = new BoardFileDTO();
+			boardFileDTO.setFileName(fileName);
+			boardFileDTO.setOriName(multipartFile.getOriginalFilename());
+			System.out.println(boardDTO.getNum());
+			boardFileDTO.setNum(boardDTO.getNum());
+			noticeDAO.setAddFile(boardFileDTO);
+		}
+		return result;
 	}
 
 	@Override

@@ -28,6 +28,15 @@
 		LIKE '%'||#{search}||'%'	
 	</sql>
 	
+	<select id="getFileDetail" parameterType="BoardFileDTO" resultType="BoardFileDTO">
+		SELECT * FROM NOTICEFILE WHERE FILENUM=#{fileNum}
+	</select>
+	
+	<delete id="setFileDelete" parameterType="BoardFileDTO">
+		DELETE NOTICEFILE WHERE FILENUM=#{fileNum}
+	</delete>
+	
+	
 	<select id="getList" resultType="NoticeDTO" parameterType="Pager">
 		SELECT * FROM   
 		(
