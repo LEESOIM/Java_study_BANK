@@ -1,9 +1,6 @@
 package com.iu.start.board.notice;
 
-import java.io.File;
-import java.util.Calendar;
 import java.util.List;
-import java.util.UUID;
 
 import javax.servlet.ServletContext;
 
@@ -116,19 +113,18 @@ public class NoticeService implements BoardService {
 	@Override
 	public int setAdd(BoardDTO boardDTO, MultipartFile[] files, ServletContext servletContext) throws Exception {
 
-		int result = noticeDAO.setAdd(boardDTO);
+		int result = noticeDAO.setAdd(boardDTO);  //파일 추가 전 글을 먼저 등록(글번호 참조하기 위해)
 		String path = "resources/upload/notice";
 
 		for (MultipartFile multipartFile : files) {
 			if (multipartFile.isEmpty()) {
-				continue;
+				continue; //비어있으면 다음꺼 실행
 			}
 
 			String fileName = fileManager.saveFile(servletContext, path, multipartFile);
 			BoardFileDTO boardFileDTO = new BoardFileDTO();
 			boardFileDTO.setFileName(fileName);
 			boardFileDTO.setOriName(multipartFile.getOriginalFilename());
-			System.out.println(boardDTO.getNum());
 			boardFileDTO.setNum(boardDTO.getNum());
 			noticeDAO.setAddFile(boardFileDTO);
 		}

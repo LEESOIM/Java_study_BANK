@@ -7,7 +7,7 @@
 const addFiles = document.getElementById('addFiles');
 const fileAdd = document.getElementById('fileAdd');
 const fileDelete = document.querySelectorAll('.fileDelete'); //forEach 가능(배열만)
-//const fileDelete = document.getElementsByClassName('.fileDelete') //forEach 불가능(유사배열이라X)
+//const fileDelete = document.getElementsByClassName('fileDelete') //forEach 불가능(유사배열이라X)
 
 
 //----------------------------------------Update시 파일삭제----------------------------------------

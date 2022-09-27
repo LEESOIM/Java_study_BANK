@@ -16,6 +16,8 @@ public class FileManager {
 
 //	@Autowired //만들어진 객체를 주입시켜 달라
 //	private ServletContext servletContext; ----매개변수로 받아오기때문에 필요가 없다!!
+	//Test할때 오류나서 주석처리 -> Test는 톰캣(서버)을 거치지 않기 때문에 주입할 객체가 없다
+	
 	
 	
 	//delete
@@ -43,11 +45,11 @@ public class FileManager {
 		
 		//3. 저장할 파일명 생성
 		String fileName = UUID.randomUUID().toString();
-		fileName = fileName+"_"+multipartFile.getOriginalFilename();
+		fileName = fileName+"_"+multipartFile.getOriginalFilename(); //파일 이름을 String 값으로 반환한다
 		
 		//4.HDD에 저장
 		file = new File(file, fileName);
-		multipartFile.transferTo(file);
+		multipartFile.transferTo(file); //파일을 저장한다
 		
 		return fileName;
 	}

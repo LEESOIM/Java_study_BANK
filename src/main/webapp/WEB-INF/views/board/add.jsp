@@ -25,13 +25,11 @@
 		<form action="./add.iu" method="post" enctype="multipart/form-data">
 			<div class="mb-3">
 				<label for="exampleFormControlInput1" class="form-label">제목</label>
-				<input type="text" name="title" class="form-control"
-					id="exampleFormControlInput1">
+				<input type="text" name="title" class="form-control" id="exampleFormControlInput1">
 			</div>
 			<div class="mb-3">
 				<label for="contents" class="form-label">내용</label>
-				<textarea class="form-control" name="contents"
-					id="contents" rows="5"></textarea>
+				<textarea class="form-control" name="contents" id="contents"></textarea>
 			</div>
 			<div class="mb-3">
 				<label for="exampleFormControlInput1" class="form-label">작성자</label>
@@ -56,7 +54,9 @@ integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4
 crossorigin="anonymous"></script>
 <script src="/resources/js/board.js"></script>
 <script type="text/javascript">
-	$("#contents").summernote();
+	$("#contents").summernote({
+		height: 200
+	});
 </script>
 </body>
 </html>
