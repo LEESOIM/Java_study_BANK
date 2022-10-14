@@ -6,8 +6,8 @@
 //add.jsp
 const addFiles = document.getElementById('addFiles');
 const fileAdd = document.getElementById('fileAdd');
-const fileDelete = document.querySelectorAll('.fileDelete'); //forEach 가능(배열만)
-//const fileDelete = document.getElementsByClassName('fileDelete') //forEach 불가능(유사배열이라X)
+const fileDelete = document.querySelectorAll('.fileDelete'); // 리턴 타입은 배열 -> forEach 가능
+//const fileDelete = document.getElementsByClassName('fileDelete') // 리턴 타입은 유사배열 -> forEach 불가능
 
 
 //----------------------------------------Update시 파일삭제----------------------------------------
@@ -18,7 +18,7 @@ const fileDelete = document.querySelectorAll('.fileDelete'); //forEach 가능(�
 
 try { //버튼배열                //버튼엘리먼트
     fileDelete.forEach(function(f){
-        console.log(f);
+        console.log(f);//<button type="button" class="fileDelete" data-file-num="">삭제</button>
 
         f.addEventListener('click', function(){
 
@@ -30,10 +30,15 @@ try { //버튼배열                //버튼엘리먼트
             let fileNum = f.getAttribute('data-file-num');
 
             //ajax
+            //1.XMLHTTPRequest 생성
             const xhttp = new XMLHttpRequest();
+            //2. Method, URL 준비
             xhttp.open('POST', './fileDelete');
+            //3. Enctype(POST일 경우만) - 요청 header 정보
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            //4. 요청 발생(POST일 경우 파라미터 추가)
             xhttp.send('fileNum='+fileNum);
+            //5. 응답 처리
             xhttp.onreadystatechange=function(){
                 if(xhttp.readyState==4&&xhttp.status==200){
                     let result = xhttp.responseText.trim();
